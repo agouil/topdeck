@@ -1,8 +1,207 @@
 body {
-  padding: 50px;
+  padding-top: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+.tileHolder {
+    height: 200px;
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.tileHolder a {
+    text-decoration: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 50;
+    left: 0;
+}
+
+.tileTextBg {
+    opacity: 0.80;
+    top: 0;
+    width: 100%;
+    position: absolute;
+    height: 35px;
+    background: none repeat scroll 0 0 #1abc9c;
+}
+
+.tileTextFooterBg {
+    opacity: 0.80;
+    width: 100%;
+    position: absolute;
+    height: 55px;
+    background: none repeat scroll 0 0 #1abc9c;
+    top: 145px;
+}
+
+.tileHolder .tileText {
+  font-family: 'Roboto', Arial, sans-serif;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  color: #ffffff;
+}
+
+.tileHolder .tileFooterText {
+  font-family: 'Roboto', Arial, sans-serif;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  color: #ffffff;
+}
+
+.tileHolder .tileFooterText .left {
+  width: 80%;
+  height: 100%;
+  float:left;
+}
+
+.tileHolder .tileFooterText .right {
+  float:right;
+  padding-right: 5px;
+}
+
+.tileHolder .tileText {
+  font-size: 20px;
+  height: 50px;
+  top: 1px;
+  text-transform: uppercase;
+}
+
+.tileHolder .tileFooterText {
+  font-size: 16px;
+  top: 145px;
+}
+
+.tileHolder .tileFooterBusStop {
+  font-family: 'Roboto', Arial, sans-serif;
+  position: absolute;
+  text-align: center;
+  width: 20%;
+  color: #ffffff;
+  width: 20%;
+}
+
+.detailContainer .bus_icon,
+.tileHolder .bus_icon {
+  width: 21px;
+  height: 21px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background-color: red;
+  margin-left: 20px;
+}
+
+.detailContainer .bus_icon .bus_stop {
+  top: -2px;
+  right: -4px;
+  font-size: 15px;
+}
+
+.tileHolder .bus_icon .bus_stop {
+  top: -2px;
+  right: 1px;
+}
+
+.detailContainer .bus_icon .bus_stop,
+.tileHolder .bus_icon .bus_stop {
+  position: relative;
+  color: white;
+}
+
+.detailContainer .spotsInfo {
+  border-top: solid 1px #CCCCCC;
+}
+
+.detailContainer .spot {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.detailContainer .spot .spotCircle {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  border: solid #CCCCCC 1px;
+  float:left;
+  top: 15px;
+  position: relative;
+}
+
+.detailContainer .spot .spotCircle .spotText {
+  font-weight: bold;
+  top: 8px;
+  left: 18px;
+  position: relative;
+}
+
+.detailContainer .spot .spotName {
+  float: left;
+  position: relative;
+  top: 14px;
+  margin-left: 10px;
+}
+
+.detailContainer .spot .spotName .name {
+  font-weight: bold;
+}
+
+.detailContainer .spot .spotName .desc {
+  line-height: 20px;
+}
+
+.detailContainer .routeInfo .routeImg {
+  width:100%;
+}
+
+.detailContainer .routeInfo {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.detailContainer .routeInfoLeft .routeInfoTitle {
+  font-size: 26px;
+}
+
+.detailContainer .routeInfoLeft .routeInfoDescription {
+  line-height: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.detailContainer .routeInfoLeft table {
+  width: 100%;
+}
+
+.detailContainer .routeInfoLeft .routeInfoBoxed {
+}
+
+.step-icon {
+    width: 55px;
+    height: 55px;
+    background-size: cover;
+}
+.step .img-circle {
+    overflow: hidden;
+    width: 55px;
+    height: 55px;
+    border: 3px solid #FFF;
+}
+
+.img-circle-border {
+    width: 57px;
+    height: 57px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
 }
