@@ -1,21 +1,39 @@
 
+var mapsReturned = false,
+    mapsQueue = [];
+
+function mapAddToWaitQueue(callback) {
+    if (mapsReturned) {
+        callback();
+    } else {
+        mapsQueue.push(callback);
+    }
+}
+
 function initialize() {
+    mapsReturned = true;
+    for (var i = 0; i < mapsQueue.length; i++) {
+        var callback = mapsQueue[i];
+        callback();
+    }
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+
+
+mapAddToWaitQueue(function() {
     $('.map-canvas').each(function(i, mapCanvas) {
-
         var myLatlng = new google.maps.LatLng(
-            $(mapCanvas).data('lat'),
-            $(mapCanvas).data('lng')
-        )
-
-        var mapOptions = {
-            zoom: 13,
-            center: myLatlng
-        };
-
-        var map = new google.maps.Map(
-            mapCanvas,
-            mapOptions
-        );
+                $(mapCanvas).data('lat'),
+                $(mapCanvas).data('lng')
+            ),
+            mapOptions = {
+                zoom: 13,
+                center: myLatlng
+            },
+            map = new google.maps.Map(
+                mapCanvas,
+                mapOptions
+            );
 
         var contentString = $(mapCanvas).data('name');
 
@@ -31,11 +49,8 @@ function initialize() {
         google.maps.event.addListener(marker, 'click', function() {
             infowindow.open(map, marker);
         });
-
     });
-}
-google.maps.event.addDomListener(window, 'load', initialize);
-
+});
 
 
 $('.step-container').each(function(i, steps) {
@@ -60,6 +75,38 @@ $('.step-container').each(function(i, steps) {
     }
 });
 
+$('.step-type-stop .step-details').on('show.bs.collapse', function () {
+    var mapCanvas = $(this).find('.stop-map-canvas');
+    mapAddToWaitQueue(function() {
+        var myLatlng = new google.maps.LatLng(
+                $(mapCanvas).data('lat'),
+                $(mapCanvas).data('lng')
+            ),
+            mapOptions = {
+                zoom: 16,
+                center: myLatlng
+            },
+            map = new google.maps.Map(
+                mapCanvas[0],
+                mapOptions
+            );
+
+        var contentString = $(mapCanvas).data('name');
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: contentString
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map, marker);
+        });
+    })
+})
 
 function calcDistance(lat1,lon1,lat2,lon2) {
     var R = 6371; // km (change this constant to get miles)

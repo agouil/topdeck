@@ -59,7 +59,8 @@ router.get('/details/:id', function (req, res, next) {
                         details: row.spotText,
                         image : row.spotImage,
                         lng : row.lng,
-                        lat : row.lat
+                        lat : row.lat,
+                        type: 'spot'
                     })
                 } else {
                     var name = row.busStopName.toLowerCase().replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function($1) {
@@ -68,10 +69,11 @@ router.get('/details/:id', function (req, res, next) {
                     returnSteps.push({
                         id: row.id,
                         name : 'Number ' + row.busRoute + ' Bus from ' + name,
-                        details: 'Bus Stop',
+                        details: 'map',
                         image : '/img/bus.jpg',
                         lng : row.lng,
-                        lat : row.lat
+                        lat : row.lat,
+                        type: 'stop'
                     })
                 }
             }
