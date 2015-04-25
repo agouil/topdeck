@@ -47,7 +47,7 @@ router.get('/details/:id', function (req, res, next) {
 
         q.all([stepQuery(),tourQuery()]).then(function(results) {
             var steps = results[0][0];
-            var tour = results[1][0];
+            var tour = results[1][0][0];
 
             var returnSteps = [];
             for (var i = 0, len = steps.length; i < len; i++) {
