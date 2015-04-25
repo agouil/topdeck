@@ -148,6 +148,7 @@ $(document).ready(function() {
             $('#paymentContainer').html(response);
             $('#payment_cancel_button').click(function() {
               $('#paymentContainer').empty();
+	      $('iframe').remove();
               $('#btn_detail_purchase').removeClass('hidden');
             });
           });
