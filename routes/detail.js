@@ -4,6 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var mysql      = require('mysql');
+
   var connection = mysql.createConnection({
     host     : '10.205.252.133',
     port     : '8889',
@@ -21,13 +22,17 @@ router.get('/', function(req, res, next) {
     console.log('connected as id ' + connection.threadId);
 
     var tours = false;
-    connection.query('SELECT * from tb_tour limit 5', function(err, rows, fields) {
+    var tourId = req.query.tourId;
+    console.log(tourId)
+    var sql = 'SELECT * from tb_tour where pk_tour_id = ' + tourId;
+    connection.query(sql, function(err, rows, fields) {
       if (err) throw err;
-	  res.render('index', {
+	  res.render('detail', {
 	  		tours: rows
 		});
     });
   });
+
 
 });
 

@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var dbroute = require('./routes/dbroute');
 var route = require('./routes/route');
 var landmark = require('./routes/spot');
+var detail = require('./routes/detail');
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use('/users', users);
 app.use('/route', route);
 app.use('/spot', spot);
 app.use('/dbroute', dbroute);
+app.use('/detail', detail);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
