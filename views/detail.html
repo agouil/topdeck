@@ -1,5 +1,7 @@
 <% layout('boilerplate') -%>
 
+<% console.log(tour) %>
+<% console.log(spots) %>
 <%
 var tour = {
     name: 'Big Ben Bitches',
@@ -42,19 +44,20 @@ var tour = {
         <img class="routeImg" src="<%= tour.img %>">
       </div>
     </div>
-
   </div>
-  <div class="spotsInfo">
+
+  <div class="spotsInfo step">
     <% for (var i = 0; i < spots.length; i++) { %>
-      <div class="spot col-md-12">
-        <div class="spotCircle">
-          <div class="spotText">
-            <%= i+1 %>
+      <div class="row">
+        <div class="col-xs-1 spot">
+          <div class="img-circle-border">
+            <div class="img-circle ">
+              <div class="step-icon" style="background-image: url('<%= spots[i].img %>')"></div>
+            </div>
           </div>
         </div>
-        <div class="spotName">
-          <div class="name"><%= spots[i].name %></div>
-          <div class="desc"><%= spots[i].text %></div>
+        <div class="col-xs-11">
+          <div class="spotText"> <%= spots[i].name %></div>
         </div>
       </div>
     <% } %>

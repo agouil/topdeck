@@ -139,11 +139,13 @@ a {
   position: relative;
 }
 
-.detailContainer .spot .spotCircle .spotText {
+.detailContainer .spotText {
   font-weight: bold;
-  top: 8px;
-  left: 18px;
+  top: 20px;
   position: relative;
+  padding-left: 10px;
+  
+
 }
 
 .detailContainer .spot .spotName {
@@ -185,6 +187,11 @@ a {
 }
 
 .detailContainer .routeInfoLeft .routeInfoBoxed {
+}
+
+.detailContainer .spotsInfo .spot {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .step-icon {

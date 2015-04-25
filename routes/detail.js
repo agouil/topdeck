@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
     console.log('connected as id ' + connection.threadId);
 
     var tours = false;
-    var tourId = req.query.tourId;
+    var tourId = req.query.id;
     var sql = 'select * ' +
               'from tb_spot s '  +
               'join tb_tour_item ti ' +
