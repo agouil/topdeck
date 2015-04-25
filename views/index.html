@@ -1,13 +1,36 @@
 <% layout('boilerplate') -%>
 
-<h2>Loop</h2>
-<ul>
-    <% tours.forEach(function(tour) { %>
-        <li><%= tour.name %> - <%= tour.description %></li>
-    <% }); %>
-</ul>
+<% var abc = {
+    name: 'Big ben and friends',
+    description: 'see big ben and shit',
+    img: 'http://cdn.londonandpartners.com/visit/london-organisations/houses-of-parliament/63950-640x360-london-icons2-640.jpg',
+    pk_bus_stop_start_id: 'H',
+    price: 1
+} %>
 
-<div class="starter-template">
-  <h1>Top Deck</h1>
-  <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+<div class="container">
+  <h1> Select your tour </h1>
+  <% for (var i = 0; i < 5; i++) { %>
+    <div class="col-md-6">
+      <div class="tileHolder" style="background: url('<%= abc.img %>') no-repeat scroll center center transparent;">
+        <a href="/" class="tileLink"></a>
+        <div class="tileTextBg"></div>s
+        <div class="tileText">
+          <%= abc.name %>
+        </div>
+        <div class="tileTextFooterBg"></div>
+        <div class="tileFooterText">
+          <div class="left"> <%= abc.description %> </div>
+          <div class="right">
+            Starts at
+            <div class="bus_icon">
+              <div class="bus_stop">
+                <%= abc.pk_bus_stop_start_id %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   <% } %>
 </div>
