@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-    host     : '127.0.0.1',
+    host     : '10.205.252.133',
     port     : '8889',
     user     : 'topdeck',
     password : 'topdeck',

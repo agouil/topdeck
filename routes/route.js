@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
+router.get('/details/:id', function(req, res, next) {
   var mysql      = require('mysql');
   var connection = mysql.createConnection({
     host     : '10.205.252.133',
@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 
     console.log('connected as id ' + connection.threadId);
 
-    var tourId = req.query.tourId;
+    var tourId = req.params.id;
     var sql = 'select '
       + 'Stop_Name as busStopName, Route as busRoute, name as spotName, rank '
       + 'from tb_tour_item '
