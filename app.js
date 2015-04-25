@@ -8,13 +8,18 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var db = require('./routes/db');
+var route = require('./routes/route');
 
 var app = express();
+
+var engine = require('ejs-mate');
+
+app.set('view engine', 'ejs'); // so you can render('index')
 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.engine('html', require('ejs').renderFile);
+app.engine('html', engine);
 app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
