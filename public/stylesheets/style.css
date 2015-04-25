@@ -139,11 +139,13 @@ a {
   position: relative;
 }
 
-.detailContainer .spot .spotCircle .spotText {
+.detailContainer .spotText {
   font-weight: bold;
-  top: 8px;
-  left: 18px;
+  top: 20px;
   position: relative;
+  padding-left: 10px;
+  
+
 }
 
 .detailContainer .spot .spotName {
@@ -187,11 +189,47 @@ a {
 .detailContainer .routeInfoLeft .routeInfoBoxed {
 }
 
+.detailContainer .spotsInfo .spot {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.step {
+    border-top: 1px solid #dcdcdc;
+    padding: 5px 0;
+}
+
+.step-container {
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.step-bar {
+    overflow: hidden;
+}
+
+.step-icon.bus {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+}
+
 .step-icon {
     width: 55px;
     height: 55px;
     background-size: cover;
+    background-position: center center;
 }
+
+.step-image {
+    width:55px;
+    float:left;
+}
+
+.step-name {
+    overflow: hidden;
+    padding: 0 10px;
+}
+
 .step .img-circle {
     overflow: hidden;
     width: 55px;
@@ -204,4 +242,8 @@ a {
     height: 57px;
     border: 1px solid #ccc;
     border-radius: 50%;
+}
+
+.step-details {
+    margin-top: 10px;
 }

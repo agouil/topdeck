@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/tourtext', tourtext);
-app.use('/route', route);
+app.use('/tour', route);
 app.use('/spot', spot);
 app.use('/dbroute', dbroute);
 app.use('/detail', detail);
