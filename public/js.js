@@ -137,4 +137,22 @@ $(document).ready(function() {
             });
         });
     }
+      if ('#btn_detail_purchase') {
+        $('#btn_detail_purchase').click(function(){
+          var id = $(this).attr('data-id');
+          var url = '/payment/tour/' + id
+          $.ajax({
+              url: url
+          }).success(function (response) {
+            $('#btn_detail_purchase').addClass('hidden');
+            $('#paymentContainer').html(response);
+            $('#payment_cancel_button').click(function() {
+              $('#paymentContainer').empty();
+              $('#btn_detail_purchase').removeClass('hidden');
+            });
+          });
+        });
+
+      }
+
 });

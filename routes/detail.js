@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var braintree = require('braintree');
 
 /* GET home page. */
 router.get('/tour/:id', function(req, res, next) {
@@ -22,7 +23,7 @@ router.get('/tour/:id', function(req, res, next) {
     console.log('connected as id ' + connection.threadId);
 
     var tours = false;
-    var tourId = req.query.id;
+    var tourId = req.params.id;
     var sql = 'select * ' +
               'from tb_spot s '  +
               'join tb_tour_item ti ' +

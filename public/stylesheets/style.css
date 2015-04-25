@@ -266,6 +266,22 @@ a {
   margin:auto;
 }
 
+
+#callRequest {
+  margin-top:15px;
+}
+
+.hide,
+.hidden {
+  display:none;
+}
+
+#checkout {
+  border: solid 1px #CCCCCC;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
 .tour .hero {
     height: 300px;
     position: relative;
