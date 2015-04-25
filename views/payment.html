@@ -6,3 +6,11 @@
   <div id="dropin"></div>
   <input type="submit" value="Pay £10">
 </form>
+
+<script>
+braintree.setup(
+  '<%= clientToken %>',
+  'dropin', {
+    container: 'dropin'
+  });
+</script>
