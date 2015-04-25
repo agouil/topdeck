@@ -1,13 +1,19 @@
 <% layout('boilerplate') -%>
 
-<h1><% tour.name %></h1>
 
-<button id="callRequest" type="button" data-route-id="1" class="btn btn-default navbar-btn pull-right">Call me with tour</button>
+<div class="tour">
+
+    <div class="hero background-cover" style="background-image: url('<%= tour.img %>')">
+        <div class="gradient"></div>
 
         <h1><%= tour.name %></h1>
     </div>
 
-    <div id="demo"></div>
+    <button id="callRequest" type="button" data-route-id="1"
+            class="btn btn-default navbar-btn pull-right">
+        Call me with tour
+    </button>
+    <div class="clearfix"></div>
     <div class="step-container">
     <% tourSteps.forEach(function(step){ %>
         <div class="step step-type-<%= step.type %>" data-lat="<%= step.lat %>" data-lng="<%= step.lng %>">
