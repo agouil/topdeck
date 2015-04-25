@@ -90,7 +90,7 @@ a {
   width: 20%;
 }
 
-.detailContainer .bus_icon .bus_stop,
+.detailContainer .bus_icon,
 .tileHolder .bus_icon {
   width: 21px;
   height: 21px;
@@ -101,11 +101,21 @@ a {
   margin-left: 20px;
 }
 
+.detailContainer .bus_icon .bus_stop {
+  top: -2px;
+  right: -4px;
+  font-size: 15px;
+}
+
+.tileHolder .bus_icon .bus_stop {
+  top: -2px;
+  right: 1px;
+}
+
 .detailContainer .bus_icon .bus_stop,
 .tileHolder .bus_icon .bus_stop {
   position: relative;
-  top: -2px;
-  right: 1px;
+  color: white;
 }
 
 .detailContainer .spotsInfo {
