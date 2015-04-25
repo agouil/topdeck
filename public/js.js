@@ -36,18 +36,41 @@ function initialize() {
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
-var x = document.getElementById("demo");
-function getLocation() {
+
+
+$('.step-container').each(function(i, steps) {
+    function showPosition(position) {
+        $(steps).find('.step').each(function(i, step) {
+            console.log($(step))
+            var lat = $(step).data('lat'),
+                lng = $(step).data('lng'),
+                distance = calcDistance(
+                        lat,
+                        lng,
+                        position.coords.latitude,
+                        position.coords.longitude
+                    );
+
+            $(step).find('.step-distance').html(distance);
+
+        });
+    }
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
     }
-}
-function showPosition(position) {
-    console.log(position)
-    x.innerHTML = "Latitude: " + position.coords.latitude +
-        "<br>Longitude: " + position.coords.longitude;
-}
+});
 
-getLocation();
+
+function calcDistance(lat1,lon1,lat2,lon2) {
+    var R = 6371; // km (change this constant to get miles)
+    var dLat = (lat2-lat1) * Math.PI / 180;
+    var dLon = (lon2-lon1) * Math.PI / 180;
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(lat1 * Math.PI / 180 ) * Math.cos(lat2 * Math.PI / 180 ) *
+        Math.sin(dLon/2) * Math.sin(dLon/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = R * c;
+    if (d>1) return Math.round(d)+"km";
+    else if (d<=1) return Math.round(d*1000)+"m";
+    return d;
+}
