@@ -77,7 +77,8 @@ router.get('/details/:id', function (req, res, next) {
                         details: row.spotText,
                         image : row.spotImage,
                         lng : row.lng,
-                        lat : row.lat
+                        lat : row.lat,
+                        type: 'spot'
                     })
                     // Add to call text
                     callText += row.spotText + '#pz2#';
@@ -88,10 +89,11 @@ router.get('/details/:id', function (req, res, next) {
                     returnSteps.push({
                         id: row.id,
                         name : 'Number ' + row.busRoute + ' Bus from ' + name,
-                        details: 'Bus Stop',
+                        details: 'map',
                         image : '/img/bus.jpg',
                         lng : row.lng,
-                        lat : row.lat
+                        lat : row.lat,
+                        type: 'stop'
                     })
                     // Add to call text
                     callText += 'Bus stop ' + name + '#pz2#';

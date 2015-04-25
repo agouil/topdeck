@@ -1,34 +1,40 @@
 <% layout('boilerplate') -%>
-<<<<<<< Updated upstream
 
 <h1><% tour.name %></h1>
-=======
-<button id="callRequest" type="button" data-route-id="1" class="btn btn-default navbar-btn pull-right">Call me with tour</button>
-<h1>Loads of cool routes</h1>
->>>>>>> Stashed changes
 
-<div id="demo"></div>
-<div class="step-container">
-<% tourSteps.forEach(function(step){ %>
-    <div class="step" data-lat="<%= step.lat %>" data-lng="<%= step.lng %>">
-        <div class="step-bar" data-toggle="collapse" href="#step-details-<%= step.id %>"
-             aria-expanded="false" aria-controls="collapseExample">
-            <div class="step-image">
-                <div class="img-circle-border">
-                    <div class="img-circle ">
-                        <div class="step-icon" style="background-image: url('<%= step.image %>')"></div>
+<button id="callRequest" type="button" data-route-id="1" class="btn btn-default navbar-btn pull-right">Call me with tour</button>
+
+        <h1><%= tour.name %></h1>
+    </div>
+
+    <div id="demo"></div>
+    <div class="step-container">
+    <% tourSteps.forEach(function(step){ %>
+        <div class="step step-type-<%= step.type %>" data-lat="<%= step.lat %>" data-lng="<%= step.lng %>">
+            <div class="step-bar" data-toggle="collapse" href="#step-details-<%= step.id %>"
+                 aria-expanded="false" aria-controls="collapseExample">
+                <div class="step-image">
+                    <div class="img-circle-border">
+                        <div class="img-circle ">
+                            <div class="step-icon background-cover" style="background-image: url('<%= step.image %>')"></div>
+                        </div>
                     </div>
                 </div>
+                <div class="step-name">
+                    <%= step.name %>
+                    <span class="step-distance"></span>
+                </div>
             </div>
-            <div class="step-name">
-                <%= step.name %>
-                <span class="step-distance"></span>
+            <div class="clearfix"></div>
+            <div id="step-details-<%= step.id %>" class="step-details collapse">
+                <% if (step.type == 'spot') { %>
+                    <%= step.details %>
+                <% } else { %>
+                    <div class="stop-map-canvas" data-name="<%= step.name %>"
+                         data-lat="<%= step.lat %>" data-lng="<%= step.lng %>"></div>
+                <% } %>
             </div>
         </div>
-        <div class="clearfix"></div>
-        <div id="step-details-<%= step.id %>" class="step-details collapse">
-            <%= step.details %>
-        </div>
+    <% }); %>
     </div>
-<% }); %>
 </div>
