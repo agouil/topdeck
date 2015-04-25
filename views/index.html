@@ -6,7 +6,7 @@
   <% tours.forEach(function(tour) { %>
     <div class="col-md-6">
       <div class="tileHolder" style="background: url('<%= tour.img %>') no-repeat scroll center center transparent;">
-        <a href="/detail?id=<%= tour.pk_tour_id %>" class="tileLink"></a>
+        <a href="/detail/tour/<%= tour.pk_tour_id %>" class="tileLink"></a>
         <div class="tileTextBg"></div>
         <div class="tileText">
           <%= tour.name %>
