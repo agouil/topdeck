@@ -12,6 +12,7 @@ a {
     position: relative;
     width: 100%;
     display: inline-block;
+    margin-bottom: 5px;
 }
 
 .tileHolder a {
@@ -28,21 +29,17 @@ a {
     top: 0;
     width: 100%;
     position: absolute;
-    height: 50px;
+    height: 35px;
     background: none repeat scroll 0 0 #1abc9c;
 }
 
 .tileTextFooterBg {
     opacity: 0.80;
-    top: 0;
     width: 100%;
     position: absolute;
-    height: 70px;
+    height: 55px;
     background: none repeat scroll 0 0 #1abc9c;
-}
-
-.tileTextFooterBg {
-    top: 130px;
+    top: 145px;
 }
 
 .tileHolder .tileText {
@@ -54,11 +51,11 @@ a {
 }
 
 .tileHolder .tileFooterText {
-    font-family: 'Roboto', Arial, sans-serif;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    color: #ffffff;
+  font-family: 'Roboto', Arial, sans-serif;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  color: #ffffff;
 }
 
 .tileHolder .tileFooterText .left {
@@ -75,13 +72,13 @@ a {
 .tileHolder .tileText {
   font-size: 20px;
   height: 50px;
-  top: 10px;
+  top: 1px;
   text-transform: uppercase;
 }
 
 .tileHolder .tileFooterText {
   font-size: 16px;
-  top: 135px;s
+  top: 145px;
 }
 
 .tileHolder .tileFooterBusStop {
@@ -94,13 +91,17 @@ a {
 }
 
 .tileHolder .bus_icon {
-    width: 21px;
-    height: 21px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    background-color: red;
-    margin-left: 20px;
+  width: 21px;
+  height: 21px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background-color: red;
+  margin-left: 20px;
 }
 
-.tileHolder .bus_icon .
+.tileHolder .bus_icon .bus_stop {
+  position: relative;
+  top: -2px;
+  right: 1px;
+}
