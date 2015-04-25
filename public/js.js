@@ -56,7 +56,6 @@ mapAddToWaitQueue(function() {
 $('.step-container').each(function(i, steps) {
     function showPosition(position) {
         $(steps).find('.step').each(function(i, step) {
-            console.log($(step))
             var lat = $(step).data('lat'),
                 lng = $(step).data('lng'),
                 distance = calcDistance(
@@ -77,36 +76,39 @@ $('.step-container').each(function(i, steps) {
 
 $('.step-type-stop .step-details').on('show.bs.collapse', function () {
     var mapCanvas = $(this).find('.stop-map-canvas');
-    mapAddToWaitQueue(function() {
-        var myLatlng = new google.maps.LatLng(
-                $(mapCanvas).data('lat'),
-                $(mapCanvas).data('lng')
-            ),
-            mapOptions = {
-                zoom: 16,
-                center: myLatlng
-            },
-            map = new google.maps.Map(
-                mapCanvas[0],
-                mapOptions
-            );
+    if (!mapCanvas.hasClass('init')) {
+        mapCanvas.addClass('init');
+        mapAddToWaitQueue(function () {
+            var myLatlng = new google.maps.LatLng(
+                    $(mapCanvas).data('lat'),
+                    $(mapCanvas).data('lng')
+                ),
+                mapOptions = {
+                    zoom: 16,
+                    center: myLatlng
+                },
+                map = new google.maps.Map(
+                    mapCanvas[0],
+                    mapOptions
+                );
 
-        var contentString = $(mapCanvas).data('name');
+            var contentString = $(mapCanvas).data('name');
 
-        var infowindow = new google.maps.InfoWindow({
-            content: contentString
-        });
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
 
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: contentString
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: contentString
+            });
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.open(map, marker);
+            });
         });
-        google.maps.event.addListener(marker, 'click', function() {
-            infowindow.open(map, marker);
-        });
-    })
-})
+    }
+});
 
 function calcDistance(lat1,lon1,lat2,lon2) {
     var R = 6371; // km (change this constant to get miles)
@@ -126,13 +128,11 @@ function calcDistance(lat1,lon1,lat2,lon2) {
 $(document).ready(function() {
     if ($('#callRequest')) {
         $('#callRequest').click(function() {
-            console.log($('#callRequest').data('route-id'));
             $.ajax({
                 url: '/tourtext/' + $('#callRequest').data('route-id'),
                 cache: false,
                 timeout: 5000,
                 success: function(data) {
-                    console.log('call worked');
                 }
             });
         });
