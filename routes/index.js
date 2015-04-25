@@ -17,19 +17,14 @@ router.get('/', function(req, res, next) {
       console.error('error connecting: ' + err.stack);
       return;
     }
-
     console.log('connected as id ' + connection.threadId);
-
-    var tours = false;
-    connection.query('SELECT * from tb_tour limit 5', function(err, rows, fields) {
-      if (err) throw err;
-	  res.render('index', {
-	  		tours: rows
-		});
-    });
   });
-
-  res.render('index', { title: 'Ejs'} );
+  var tours = false;
+  connection.query('SELECT * from tb_tour limit 5', function(err, rows, fields) {
+    if (err) throw err;
+    connection.destroy();
+    res.render('index', {tours: rows});
+  });
 });
 
 module.exports = router;
