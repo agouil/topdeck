@@ -61,6 +61,7 @@ $('.step-container').each(function(i, steps) {
 });
 
 
+<<<<<<< Updated upstream
 function calcDistance(lat1,lon1,lat2,lon2) {
     var R = 6371; // km (change this constant to get miles)
     var dLat = (lat2-lat1) * Math.PI / 180;
@@ -74,3 +75,23 @@ function calcDistance(lat1,lon1,lat2,lon2) {
     else if (d<=1) return Math.round(d*1000)+"m";
     return d;
 }
+=======
+getLocation();
+
+// Calling
+$(document).ready(function() {
+    if ($('#callRequest')) {
+        $('#callRequest').click(function() {
+            console.log($('#callRequest').data('route-id'));
+            $.ajax({
+                url: '/tourtext/' + $('#callRequest').data('route-id'),
+                cache: false,
+                timeout: 5000,
+                success: function(data) {
+                    console.log('call worked');
+                }
+            });
+        });
+    }
+});
+>>>>>>> Stashed changes

@@ -247,6 +247,7 @@ a {
     margin-top: 10px;
 }
 
+<<<<<<< Updated upstream
 .spotsInfo .spotTitle {
   font-size: 26px;
 }
@@ -263,3 +264,10 @@ a {
 .detailContainer .purchaseButton .btn.btn-success {
   margin:auto;
 }
+=======
+#callRequest {
+  margin-top:15px;
+}
+}
+
+>>>>>>> Stashed changes
