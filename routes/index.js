@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
     console.log('connected as id ' + connection.threadId);
 
     var tours = false;
-    connection.query('SELECT * from tb_bus_stop limit 5', function(err, rows, fields) {
+    connection.query('SELECT * from tb_tour limit 5', function(err, rows, fields) {
       if (err) throw err;
 	  res.render('index', {
 	  		tours: rows
