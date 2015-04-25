@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding-top: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -104,4 +104,23 @@ a {
   position: relative;
   top: -2px;
   right: 1px;
+}
+
+.step-icon {
+    width: 55px;
+    height: 55px;
+    background-size: cover;
+}
+.step .img-circle {
+    overflow: hidden;
+    width: 55px;
+    height: 55px;
+    border: 3px solid #FFF;
+}
+
+.img-circle-border {
+    width: 57px;
+    height: 57px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
 }
