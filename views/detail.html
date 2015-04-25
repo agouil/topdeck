@@ -23,7 +23,7 @@ var tour = {
           <%= tour.description %>
         </div>
 
-        <table>
+        <table class="table">
           <tr>
             <td> Cost </td>
             <td> £<%= (tour.cost).toFixed(2) %> </td>
@@ -39,16 +39,20 @@ var tour = {
             </td>
           </tr>
         </table>
+        <div class="purchaseButton">
+          <input type="button" class="btn btn-success" value="Purchase Route">
+        </div>
       </div>
       <div class="col-md-6 routeInfoRight">
-        <img class="routeImg" src="<%= tour.img %>">
+        <img src="<%= tour.img %>" alt="..." class="img-thumbnail routeImg">
       </div>
     </div>
   </div>
 
-  <div class="spotsInfo step">
+  <div class="spotsInfo">
+    <div class="spotTitle"> What you'll be seeing </div>
     <% for (var i = 0; i < spots.length; i++) { %>
-      <div class="row">
+      <div class="row spotRow">
         <div class="col-xs-1 spot">
           <div class="img-circle-border">
             <div class="img-circle ">

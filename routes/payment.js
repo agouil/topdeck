@@ -23,10 +23,10 @@ router.post('/process', function(req, res, next) {
   }, function (err, authResult) {
     if (err) throw err;
     if (authResult.success && authResult.transaction.status == 'authorized') {
-      gateway.transaction.submitForSettlement(authResult.transaction.id, function (err, settlementResult) {	      
+      gateway.transaction.submitForSettlement(authResult.transaction.id, function (err, settlementResult) {
         if (err) throw err;
         if (settlementResult.success) {
-	  res.send('SUCCESS!!', {});
+	          res.send('SUCCESS!!', {});
         } else {
           gateway.transaction.void(authResult.transaction.id, function (err, result) {});
           res.render('error', {});
@@ -35,7 +35,7 @@ router.post('/process', function(req, res, next) {
     } else {
       res.render('error', {});
     }
-  }); 
+  });
 });
 
 module.exports = router;

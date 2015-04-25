@@ -3,6 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+<<<<<<< Updated upstream
   var mysql      = require('mysql');
   var connection = mysql.createConnection({
     host     : '10.205.252.133',
@@ -29,6 +30,9 @@ router.get('/', function(req, res, next) {
     });
   });
 
+=======
+  res.render('index', { title: 'Ejs', testVar: 'var' });
+>>>>>>> Stashed changes
 });
 
 module.exports = router;
