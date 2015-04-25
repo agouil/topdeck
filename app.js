@@ -7,15 +7,13 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var db = require('./routes/db');
+var dbroute = require('./routes/dbroute');
 var route = require('./routes/route');
+var landmark = require('./routes/spot');
 
 var app = express();
 
 var engine = require('ejs-mate');
-
-app.set('view engine', 'ejs'); // so you can render('index')
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,7 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/route', route);
-app.use('/db', db);
+app.use('/spot', spot);
+app.use('/dbroute', dbroute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
