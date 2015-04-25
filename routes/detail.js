@@ -23,13 +23,19 @@ router.get('/', function(req, res, next) {
 
     var tours = false;
     var tourId = req.query.tourId;
-    console.log(tourId)
-    var sql = 'SELECT * from tb_tour where pk_tour_id = ' + tourId;
+    var sql = 'select * ' +
+              'from tb_spot s '  +
+              'join tb_tour_item ti ' +
+              'on s.pk_spot_id = ti.fk_spot_id ' +
+              'where ti.fk_tour_id = ' + tourId + ' ' +
+              'and ti.fk_bus_sequence_id = 0';
     connection.query(sql, function(err, rows, fields) {
       if (err) throw err;
 	  res.render('detail', {
-	  		tours: rows
+	  		spots: rows
 		});
+
+
     });
   });
 
