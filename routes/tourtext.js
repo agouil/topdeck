@@ -13,7 +13,7 @@ router.get('/:textId', function(req, res, next) {
   });
 
   	var textParams = req.params;
-  connection.connect(function(err) {
+  	connection.connect(function(err) {
     if (err) {
       console.error('error connecting: ' + err.stack);
       return;
@@ -21,21 +21,16 @@ router.get('/:textId', function(req, res, next) {
 
     console.log('connected as id ' + connection.threadId);
 
-    connection.query('SELECT * from tb_tour_call_text where pk_tour_call_text_id = ' + textParams.textId, function(err, rows, fields) {
+    connection.query('SELECT * from tb_tour_call_text where fk_tour_id = ' 
+    	+ textParams.textId
+    	+ ' order by pk_tour_call_text_id desc ', function(err, rows, fields) {
       if (err) throw err;
-      console.log(rows[0]['text']);
 
-      var js2xmlparser = require("js2xmlparser");
-
-		var data = {
-		    "Say": "look to your left"
-		};
 
 		//require the Twilio module and create a REST client
 		var client = require('twilio')('AC1ca9f4c30c702b2af7be78ebc95a25fc', '405c95f95348b95df1cf776cf1408f52');
 
 		//Place a phone call, and respond with TwiML instructions from the given URL
-		
 		client.makeCall({
 		    to:'+447711666704', // Any number Twilio can call
 		    from: '+441425600048', // A number you bought from Twilio and can use for outbound communication
@@ -48,21 +43,8 @@ router.get('/:textId', function(req, res, next) {
 
 		});
 
-
-		console.log(js2xmlparser("Response", data));
-
-
 		 res.header('Content-Type','text/xml');
 		 res.render('tourtext');
-      /*
-            var builder = require('xmlbuilder');
-		var xml = builder.create('Response')
-		  .ele('Say', rows[0]['text'])
-		  .end({ pretty: true});
-	  res.render('tourtext', {
-	  		rows: rows
-		});
-		*/
     });
   });
 

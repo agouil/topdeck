@@ -1,8 +1,8 @@
 <% layout('boilerplate') -%>
 
-<div class="tour">
-    <div class="hero background-cover" style="background-image: url('<%= tour.img %>')">
-        <div class="gradient"></div>
+<h1><% tour.name %></h1>
+
+<button id="callRequest" type="button" data-route-id="1" class="btn btn-default navbar-btn pull-right">Call me with tour</button>
 
         <h1><%= tour.name %></h1>
     </div>
