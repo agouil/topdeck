@@ -9,7 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var dbroute = require('./routes/dbroute');
 var route = require('./routes/route');
-var landmark = require('./routes/spot');
+var spot = require('./routes/spot');
 var detail = require('./routes/detail');
 
 var app = express();
