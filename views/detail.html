@@ -13,6 +13,8 @@ var tour = {
 }
 %>
 
+<input type="hidden" id="detail_tour_id">
+
 <div class="col-md-8 col-md-offset-2 detailContainer">
   <div class="routeInfo">
     <div class="row">
@@ -41,10 +43,9 @@ var tour = {
           </tr>
         </table>
         <div class="purchaseButton">
-          <a href="/payment/tour/<%= tour.pk_tour_id %>">
-            <input type="button" class="btn btn-success" value="Purchase Route">
-          </a>
+          <input id="btn_detail_purchase" type="button" class="btn btn-success" value="Purchase Route" data-id="<%= tour.pk_tour_id %>">
         </div>
+        <div id="paymentContainer"></div>
       </div>
       <div class="col-md-6 routeInfoRight">
         <img src="<%= tour.img %>" alt="..." class="img-thumbnail routeImg">

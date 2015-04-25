@@ -8,7 +8,7 @@ var gateway = braintree.connect({
     privateKey:   '6a925c72a4aa947bf06e5289056fa05d'
   });
 
-router.get('/', function(req, res, next) {
+router.get('/tour/:id', function(req, res, next) {
   gateway.clientToken.generate({}, function (err, result) {
     if (err) throw err;
     res.render('payment', {clientToken: result.clientToken});
@@ -26,7 +26,7 @@ router.post('/process', function(req, res, next) {
       gateway.transaction.submitForSettlement(authResult.transaction.id, function (err, settlementResult) {
         if (err) throw err;
         if (settlementResult.success) {
-	          res.send('SUCCESS!!', {});
+	         res.send('SUCCESS!!', {});
         } else {
           gateway.transaction.void(authResult.transaction.id, function (err, result) {});
           res.render('error', {});

@@ -61,7 +61,6 @@ $('.step-container').each(function(i, steps) {
 });
 
 
-<<<<<<< Updated upstream
 function calcDistance(lat1,lon1,lat2,lon2) {
     var R = 6371; // km (change this constant to get miles)
     var dLat = (lat2-lat1) * Math.PI / 180;
@@ -75,7 +74,7 @@ function calcDistance(lat1,lon1,lat2,lon2) {
     else if (d<=1) return Math.round(d*1000)+"m";
     return d;
 }
-=======
+
 getLocation();
 
 // Calling
@@ -93,5 +92,22 @@ $(document).ready(function() {
             });
         });
     }
+      if ('#btn_detail_purchase') {
+        $('#btn_detail_purchase').click(function(){
+          var id = $(this).attr('data-id');
+          var url = '/payment/tour/' + id
+          $.ajax({
+              url: url
+          }).success(function (response) {
+            $('#btn_detail_purchase').addClass('hidden');
+            $('#paymentContainer').html(response);
+            $('#payment_cancel_button').click(function() {
+              $('#paymentContainer').empty();
+              $('#btn_detail_purchase').removeClass('hidden');
+            });
+          });
+        });
+
+      }
+
 });
->>>>>>> Stashed changes
