@@ -177,10 +177,27 @@ a {
 .detailContainer .routeInfoLeft .routeInfoBoxed {
 }
 
+.step-image {
+    width:55px;
+    float:left;
+}
+
+.step-details {
+    overflow: hidden;
+    padding: 10px;
+}
+
+.step-icon.bus {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+}
+
 .step-icon {
     width: 55px;
     height: 55px;
     background-size: cover;
+    background-position: center center;
 }
 .step .img-circle {
     overflow: hidden;

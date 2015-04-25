@@ -1,21 +1,21 @@
 <% layout('boilerplate') -%>
 
 <h1>Loads of cool routes</h1>
-<ol>
-    <% tourSteps.forEach(function(step){ %>
-    <div class="col-xs-12 step">
-        <div class="col-xs-1">
+
+<% tourSteps.forEach(function(step){ %>
+    <div class="step">
+        <div class="step-image">
             <div class="img-circle-border">
                 <div class="img-circle ">
                     <% if(step.busRoute) { %>
-                        <div class="step-icon" style="background-image: url('/img/bus.jpg')"></div>
+                        <div class="step-icon bus" style="background-image: url('/img/bus.jpg')"></div>
                     <% } else { %>
                         <div class="step-icon" style="background-image: url('<%= step.spotImage %>')"></div>
                     <% } %>
                 </div>
             </div>
         </div>
-        <div class="col-xs-11">
+        <div class="step-details">
             <% if(step.busRoute) { %>
                 Bus <%= step.busRoute %> from <%= step.busStopName %>
             <% } else { %>
@@ -23,5 +23,5 @@
             <% } %>
         </div>
     </div>
-    <% }); %>
-</ol>
+    <div class="clearfix"></div>
+<% }); %>
