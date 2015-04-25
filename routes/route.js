@@ -21,7 +21,7 @@ router.get('/details/:id', function(req, res, next) {
 
     var tourId = req.params.id;
     var sql = 'select '
-      + 'Stop_Name as busStopName, Route as busRoute, name as spotName, rank '
+      + 'Stop_Name as busStopName, Route as busRoute, name as spotName, rank, img as spotImage '
       + 'from tb_tour_item '
       + 'left join tb_bus_sequence on fk_bus_sequence_id = pk_bus_sequence_id '
       + 'left join tb_spot on fk_spot_id = pk_spot_id '
@@ -31,6 +31,7 @@ router.get('/details/:id', function(req, res, next) {
     connection.query(sql, function(err, rows, fields) {
       if (err) throw err;
 
+      console.log(rows)
       res.render('route', { tourSteps: rows });
     });
   });
