@@ -177,14 +177,17 @@ a {
 .detailContainer .routeInfoLeft .routeInfoBoxed {
 }
 
-.step-image {
-    width:55px;
-    float:left;
+.step {
+    border-top: 1px solid #dcdcdc;
+    padding: 5px 0;
 }
 
-.step-details {
+.step-container {
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.step-bar {
     overflow: hidden;
-    padding: 10px;
 }
 
 .step-icon.bus {
@@ -199,6 +202,17 @@ a {
     background-size: cover;
     background-position: center center;
 }
+
+.step-image {
+    width:55px;
+    float:left;
+}
+
+.step-name {
+    overflow: hidden;
+    padding: 0 10px;
+}
+
 .step .img-circle {
     overflow: hidden;
     width: 55px;
@@ -211,4 +225,8 @@ a {
     height: 57px;
     border: 1px solid #ccc;
     border-radius: 50%;
+}
+
+.step-details {
+    margin-top: 10px;
 }
