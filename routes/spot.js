@@ -21,7 +21,7 @@ var connection = mysql.createConnection({
     database : 'topdeck'
 });
 
-var db = connection.connect(function(err) {
+connection.connect(function(err) {
     if (err) {
         console.error('error connecting: ' + err.stack);
         return;
@@ -46,8 +46,8 @@ router.post('/add', function(req, res, next) {
             // form.data contains the submitted data
             console.log('success');
             console.log(form);
-            connection.query('INSERT INTO tb_spot SET ?', form.data, function(err, result) {
-                // redirect to the spot info
+            connection.query('INSERT INTO tb_spot SET ? ;SELECT LAST_INSERT_ID() as id;', form.data, function(err, result) {
+                res.redirect('/spot/view/' + result.id)
             });
         },
         error: function (form) {
@@ -63,10 +63,14 @@ router.post('/add', function(req, res, next) {
 });
 
 // View Spot
-router.get('/view', function(req, res, next) {
+router.get('/view/:id', function(req, res, next) {
 
-    console.log(req)
-
+    var spotId = req.params.id;
+    connection.query('SELECT * FROM tb_spot where pk_spot_id = ?', spotId, function (err, result) {
+        res.render('spot/view', {
+            spot: result[0]
+        });
+    });
 });
 
 /* Add spot. */
@@ -86,7 +90,7 @@ router.get('/add', function(req, res, next) {
         return '<div class="form-group ' + validationclass + '">' + label + widget + error + '</div>';
     };
 
-    res.render('landmark', {
+    res.render('spot/add', {
         landmarkAddForm: landmarkAddForm,
         bootstrapForm: bootstrapForm
     });

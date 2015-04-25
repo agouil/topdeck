@@ -1,0 +1,19 @@
+<% layout('boilerplate') -%>
+
+
+<div class="col-md-3">
+    <img src="<%= spot.img %>" style="width: 100%">
+</div>
+<div class="col-md-9">
+    <h1><%= spot.name %></h1>
+
+    <div>
+        <%= spot.text %>
+    </div>
+
+    <div class="map-canvas" data-name="<%= spot.name %>"
+         data-lat="<%= spot.lat %>" data-lng="<%= spot.lng %>"
+         style="width: 100%; height: 350px">
+    </div>
+
+</div>
