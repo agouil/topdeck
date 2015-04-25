@@ -108,7 +108,6 @@ $('.step-type-stop .step-details').on('show.bs.collapse', function () {
     })
 })
 
-<<<<<<< Updated upstream
 function calcDistance(lat1,lon1,lat2,lon2) {
     var R = 6371; // km (change this constant to get miles)
     var dLat = (lat2-lat1) * Math.PI / 180;
@@ -122,8 +121,6 @@ function calcDistance(lat1,lon1,lat2,lon2) {
     else if (d<=1) return Math.round(d*1000)+"m";
     return d;
 }
-=======
-getLocation();
 
 // Calling
 $(document).ready(function() {
@@ -141,4 +138,3 @@ $(document).ready(function() {
         });
     }
 });
->>>>>>> Stashed changes
