@@ -244,6 +244,12 @@ a {
     border-radius: 50%;
 }
 
+.step-distance {
+    color: #999;
+    font-size: 12px;
+}
+
 .step-details {
     margin-top: 10px;
 }
+
