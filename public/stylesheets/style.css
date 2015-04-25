@@ -180,7 +180,7 @@ a {
 }
 
 .detailContainer .routeInfoLeft table {
-  width: 100%;
+  margin-bottom:5px;
 }
 
 .detailContainer .routeInfoLeft .routeInfoBoxed {
@@ -253,4 +253,13 @@ a {
 
 .detailContainer .spotRow {
     border-top: 1px solid #dcdcdc;
+}
+
+.detailContainer .purchaseButton {
+  text-align:center;
+  margin-bottom:5px;
+}
+
+.detailContainer .purchaseButton .btn.btn-success {
+  margin:auto;
 }
