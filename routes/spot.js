@@ -62,7 +62,14 @@ router.post('/add', function(req, res, next) {
     });
 });
 
-/* GET users listing. */
+// View Spot
+router.get('/view', function(req, res, next) {
+
+    console.log(req)
+
+});
+
+/* Add spot. */
 router.get('/add', function(req, res, next) {
 
     var bootstrapForm = function (name, object) {
