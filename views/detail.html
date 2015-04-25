@@ -8,7 +8,8 @@ var tour = {
     description: 'Take a luxurious tour of one of londons most iconic building in this tour going around big ben and westminster',
     img: 'http://cdn.londonandpartners.com/visit/london-organisations/houses-of-parliament/63950-640x360-london-icons2-640.jpg',
     fk_bus_stop_start_id: 'H',
-    cost: 10.50
+    cost: 10.50,
+    pk_tour_id: 1
 }
 %>
 
@@ -40,7 +41,9 @@ var tour = {
           </tr>
         </table>
         <div class="purchaseButton">
-          <input type="button" class="btn btn-success" value="Purchase Route">
+          <a href="/payment/tour/<%= tour.pk_tour_id %>">
+            <input type="button" class="btn btn-success" value="Purchase Route">
+          </a>
         </div>
       </div>
       <div class="col-md-6 routeInfoRight">
