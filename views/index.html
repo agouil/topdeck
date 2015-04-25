@@ -1,36 +1,28 @@
 <% layout('boilerplate') -%>
 
-<% var abc = {
-    name: 'Big ben and friends',
-    description: 'see big ben and shit',
-    img: 'http://cdn.londonandpartners.com/visit/london-organisations/houses-of-parliament/63950-640x360-london-icons2-640.jpg',
-    pk_bus_stop_start_id: 'H',
-    price: 1
-} %>
-
 <div class="container">
   <h1> Select your tour </h1>
-  <% for (var i = 0; i < 5; i++) { %>
+  <% tours.forEach(function(tour) { %>
     <div class="col-md-6">
-      <div class="tileHolder" style="background: url('<%= abc.img %>') no-repeat scroll center center transparent;">
+      <div class="tileHolder" style="background: url('<%= tour.img %>') no-repeat scroll center center transparent;">
         <a href="/" class="tileLink"></a>
-        <div class="tileTextBg"></div>s
+        <div class="tileTextBg"></div>
         <div class="tileText">
-          <%= abc.name %>
+          <%= tour.name %>
         </div>
         <div class="tileTextFooterBg"></div>
         <div class="tileFooterText">
-          <div class="left"> <%= abc.description %> </div>
+          <div class="left"> <%= tour.description %> </div>
           <div class="right">
             Starts at
             <div class="bus_icon">
               <div class="bus_stop">
-                <%= abc.pk_bus_stop_start_id %>
+                <%= tour.fk_bus_stop_start_id %>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-   <% } %>
+   <% }); %>
 </div>
