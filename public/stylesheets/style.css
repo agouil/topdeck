@@ -6,3 +6,101 @@ body {
 a {
   color: #00B7FF;
 }
+
+.tileHolder {
+    height: 200px;
+    position: relative;
+    width: 100%;
+    display: inline-block;
+}
+
+.tileHolder a {
+    text-decoration: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 50;
+    left: 0;
+}
+
+.tileTextBg {
+    opacity: 0.80;
+    top: 0;
+    width: 100%;
+    position: absolute;
+    height: 50px;
+    background: none repeat scroll 0 0 #1abc9c;
+}
+
+.tileTextFooterBg {
+    opacity: 0.80;
+    top: 0;
+    width: 100%;
+    position: absolute;
+    height: 70px;
+    background: none repeat scroll 0 0 #1abc9c;
+}
+
+.tileTextFooterBg {
+    top: 130px;
+}
+
+.tileHolder .tileText {
+  font-family: 'Roboto', Arial, sans-serif;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  color: #ffffff;
+}
+
+.tileHolder .tileFooterText {
+    font-family: 'Roboto', Arial, sans-serif;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+}
+
+.tileHolder .tileFooterText .left {
+  width: 80%;
+  height: 100%;
+  float:left;
+}
+
+.tileHolder .tileFooterText .right {
+  float:right;
+  padding-right: 5px;
+}
+
+.tileHolder .tileText {
+  font-size: 20px;
+  height: 50px;
+  top: 10px;
+  text-transform: uppercase;
+}
+
+.tileHolder .tileFooterText {
+  font-size: 16px;
+  top: 135px;s
+}
+
+.tileHolder .tileFooterBusStop {
+  font-family: 'Roboto', Arial, sans-serif;
+  position: absolute;
+  text-align: center;
+  width: 20%;
+  color: #ffffff;
+  width: 20%;
+}
+
+.tileHolder .bus_icon {
+    width: 21px;
+    height: 21px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: red;
+    margin-left: 20px;
+}
+
+.tileHolder .bus_icon .
