@@ -36,18 +36,17 @@ function initialize() {
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
-var x = document.getElementById("demo");
-function getLocation() {
+
+
+$('.step-container').each(function(steps) {
+    function showPosition(position) {
+        steps.find('').each(function() {
+
+        });
+        x.innerHTML = "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longitude;
+    }
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
     }
-}
-function showPosition(position) {
-    console.log(position)
-    x.innerHTML = "Latitude: " + position.coords.latitude +
-        "<br>Longitude: " + position.coords.longitude;
-}
-
-getLocation();
+});

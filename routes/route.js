@@ -21,10 +21,12 @@ router.get('/details/:id', function (req, res, next) {
 
         var tourId = req.params.id;
         var sql = 'select '
-            + 'pk_tour_item as id, Stop_Name as busStopName, Route as busRoute, name as spotName, rank, img as spotImage, text as spotText '
+            + 'pk_tour_item as id, Stop_Name as busStopName, Route as busRoute, spot.name as spotName, rank, '
+            + 'img as spotImage, text as spotText, coalesce(stop.lat, spot.lat) as lat, coalesce(stop.lng, spot.lng) as lng '
             + 'from tb_tour_item '
-            + 'left join tb_bus_sequence on fk_bus_sequence_id = pk_bus_sequence_id '
-            + 'left join tb_spot on fk_spot_id = pk_spot_id '
+            + 'left join tb_bus_sequence as bus on fk_bus_sequence_id = pk_bus_sequence_id '
+            + 'left join tb_bus_stop as stop on bus.Bus_Stop_Code = stop.Bus_Stop_Code '
+            + 'left join tb_spot as spot on fk_spot_id = pk_spot_id '
             + 'where fk_tour_id = '
             + tourId
             + ' order by rank asc';
@@ -39,7 +41,9 @@ router.get('/details/:id', function (req, res, next) {
                         id: row.id,
                         name : row.spotName,
                         details: row.spotText,
-                        image : row.spotImage
+                        image : row.spotImage,
+                        lng : row.lng,
+                        lat : row.lat
                     })
                 } else {
                     var name = row.busStopName.toLowerCase().replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function($1) {
@@ -49,7 +53,9 @@ router.get('/details/:id', function (req, res, next) {
                         id: row.id,
                         name : 'Number ' + row.busRoute + ' Bus from ' + name,
                         details: 'Bus Stop',
-                        image : '/img/bus.jpg'
+                        image : '/img/bus.jpg',
+                        lng : row.lng,
+                        lat : row.lat
                     })
                 }
             }
