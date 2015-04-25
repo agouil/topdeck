@@ -90,6 +90,7 @@ a {
   width: 20%;
 }
 
+.detailContainer .bus_icon .bus_stop,
 .tileHolder .bus_icon {
   width: 21px;
   height: 21px;
@@ -100,10 +101,80 @@ a {
   margin-left: 20px;
 }
 
+.detailContainer .bus_icon .bus_stop,
 .tileHolder .bus_icon .bus_stop {
   position: relative;
   top: -2px;
   right: 1px;
+}
+
+.detailContainer .spotsInfo {
+  border-top: solid 1px #CCCCCC;
+}
+
+.detailContainer .spot {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.detailContainer .spot .spotCircle {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  border: solid #CCCCCC 1px;
+  float:left;
+  top: 15px;
+  position: relative;
+}
+
+.detailContainer .spot .spotCircle .spotText {
+  font-weight: bold;
+  top: 8px;
+  left: 18px;
+  position: relative;
+}
+
+.detailContainer .spot .spotName {
+  float: left;
+  position: relative;
+  top: 14px;
+  margin-left: 10px;
+}
+
+.detailContainer .spot .spotName .name {
+  font-weight: bold;
+}
+
+.detailContainer .spot .spotName .desc {
+  line-height: 20px;
+}
+
+.detailContainer .routeInfo .routeImg {
+  width:100%;
+}
+
+.detailContainer .routeInfo {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.detailContainer .routeInfoLeft .routeInfoTitle {
+  font-size: 26px;
+}
+
+.detailContainer .routeInfoLeft .routeInfoDescription {
+  line-height: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.detailContainer .routeInfoLeft table {
+  width: 100%;
+}
+
+.detailContainer .routeInfoLeft .routeInfoBoxed {
 }
 
 .step-icon {

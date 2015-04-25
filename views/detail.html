@@ -1,6 +1,62 @@
 <% layout('boilerplate') -%>
 
-hello world
-<% tours.forEach(function(tour) { %>
-    <%= tour.name %>
-<% }); %>
+<%
+var tour = {
+    name: 'Big Ben Bitches',
+    description: 'Take a luxurious tour of one of londons most iconic building in this tour going around big ben and westminster',
+    img: 'http://cdn.londonandpartners.com/visit/london-organisations/houses-of-parliament/63950-640x360-london-icons2-640.jpg',
+    fk_bus_stop_start_id: 1,
+    cost: 10.50
+}
+%>
+
+<div class="col-md-8 col-md-offset-2 detailContainer">
+  <div class="routeInfo">
+    <div class="row">
+      <div class="col-md-6 routeInfoLeft">
+        <div class="routeInfoTitle">
+          <%= tour.name %>
+        </div>
+        <div class="routeInfoDescription">
+          <%= tour.description %>
+        </div>
+
+        <table>
+          <tr>
+            <td> Cost </td>
+            <td> £<%= (tour.cost).toFixed(2) %> </td>
+          </tr>
+          <tr>
+            <td> Starts at stop </td>
+            <td>
+              <div class="bus_icon">
+                <div class="bus_stop">
+                  <%= tour.fk_bus_stop_start_id %>
+                </div>
+              </div> 
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-6 routeInfoRight">
+        <img class="routeImg" src="<%= tour.img %>">
+      </div>
+    </div>
+
+  </div>
+  <div class="spotsInfo">
+    <% for (var i = 0; i < spots.length; i++) { %>
+      <div class="spot col-md-12">
+        <div class="spotCircle">
+          <div class="spotText">
+            <%= i+1 %>
+          </div>
+        </div>
+        <div class="spotName">
+          <div class="name"><%= spots[i].name %></div>
+          <div class="desc"><%= spots[i].text %></div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div>
