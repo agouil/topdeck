@@ -94,13 +94,11 @@ a {
 }
 
 .tileHolder .bus_icon {
-    width: 21px;
-    height: 21px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    background-color: red;
-    margin-left: 20px;
+  width: 21px;
+  height: 21px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background-color: red;
+  margin-left: 20px;
 }
-
-.tileHolder .bus_icon .
