@@ -8,24 +8,40 @@
     <div class="col-md-6">
       <div class="row">
 
-        <div class="pull-left spot">
-          <div class="img-circle-border">
-            <div class="img-circle">
-              <div class="step-icon background-cover" style="background-image: url('<%= user.image_profile %>')"></div>
-            </div>
-          </div>
-        </div>
-        <div class="overflow">
-          <div class="col-xs-10">
-            <%= user.username %>
-          </div>
-          <div class="col-xs-1">
-            <%= user.spots %>
-          </div>
-          <div class="col-xs-1">
-            <%= user.votes %>
-          </div>
-        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th colspan="2"></th>
+              <th>Posts</th>
+              <th>Votes</th>
+              <th>Owed</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>
+              <div class="img-circle-border">
+                <div class="img-circle">
+                  <div class="step-icon background-cover"
+                       style="background-image: url('<%= user.image_profile %>')"></div>
+                </div>
+              </div>
+            </td>
+            <td valign="middle">
+              <%= user.username %>
+            </td>
+            <td valign="middle" class="text-center">
+              <%= parseInt(user.spots ? user.spots : 0) %>
+            </td>
+            <td valign="middle" class="text-center">
+              <%= parseInt(user.votes ? user.votes : 0) %>
+            </td>
+            <td valign="middle" class="text-center">
+              &pound;<%= parseFloat(user.owed ? user.owed : 0).toFixed(2) %>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <% }); %>
