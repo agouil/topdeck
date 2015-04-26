@@ -1,6 +1,35 @@
 <% layout('boilerplate') -%>
 
-<form method="post">
-    <%- landmarkAddForm.toHTML(bootstrapForm) %>
-    <input type="submit" class="btn btn-success" value="Add Landmark">
+<form class="landmark-form" method="post">
+  <div class="form-group ">
+    <input type="text" name="name" id="id_name" class="form-control input-lg" placeholder="Landmark Name">
+  </div>
+  <div class="form-group ">
+    <textarea name="text" class="form-control" id="id_text" rows="5"
+              placeholder="Description of the Landmark with interesting history and facts"></textarea>
+    <p class="small">The better you make this description, the more likely you are to receive votes and the more you will get paid</p>
+  </div>
+  <div class="form-group ">
+
+    <div class="upload-box">
+      <h2>Upload a photo</h2>
+    </div>
+
+    <input type="file" id="id_img" name="img" style="display: none;" />
+
+  </div>
+  <div class="form-inline">
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <button type="button" id="curr-location" class="btn btn-primary curr-location">Use Current Location</button>
+      </div>
+      <div class="form-group col-xs-3">
+        <input type="text" name="lat" id="id_lat" class="form-control" placeholder="Lat">
+      </div>
+      <div class="form-group col-xs-3">
+        <input type="text" name="lng" id="id_lng" class="form-control" placeholder="Long">
+      </div>
+    </div>
+  </div>
+  <input type="submit" class="btn btn-success" value="Add Landmark">
 </form>

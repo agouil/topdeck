@@ -504,3 +504,36 @@ a {
 .poweredByYandex {
  font-size:14px;
 }
+
+.landmark-form {
+    margin-top:20px;
+}
+
+.landmark-form .input-lg {
+    font-size: 30px;
+    height: 70px;
+}
+
+.landmark-form .small {
+    line-height: 1.5;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.upload-box {
+    border: 3px dashed #2b84d2;
+    min-height: 110px;
+    background: #e5f1fa;
+    cursor: pointer;
+}
+
+.upload-box h2 {
+    color: #1abc9c;
+    margin: 30px 0 0 40px;
+}
+
+@media (max-width: 768px) {
+    .upload-box h2 {
+        font-size: 38px;
+    }
+}

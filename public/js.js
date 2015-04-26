@@ -261,6 +261,24 @@ $(document).ready(function () {
     });
   }
 
+
+  $('#curr-location').click(function() {
+
+    function updateInputs(position) {
+      console.log('ergegergerg')
+      $('#id_lat').val(position.coords.latitude);
+      $('#id_lng').val(position.coords.longitude);
+    }
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(updateInputs);
+    }
+  });
+
+  $('.landmark-form .upload-box').click(function() {
+    $("#id_img").click();
+  });
+
   if ($('.tour').length > 0) {
     $('.step').first().find('.step-details').collapse('show');
 

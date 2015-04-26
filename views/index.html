@@ -1,41 +1,50 @@
 <% layout('boilerplate') -%>
 
-<div class="container">
+<div class="row">
+  <h1>Explore London</h1>
+
   <div class="row">
-    <h1>Explore London</h1>
+    <% tours.forEach(function(tour) { %>
+    <div class="col-md-6">
+      <div class="tileHolder" style="background: url('<%= tour.img %>') no-repeat scroll center center transparent;">
+        <a href="/detail/tour/<%= tour.pk_tour_id %>" class="tileLink"></a>
 
-    <div class="row">
-      <% tours.forEach(function(tour) { %>
-      <div class="col-md-6">
-        <div class="tileHolder" style="background: url('<%= tour.img %>') no-repeat scroll center center transparent;">
-          <a href="/detail/tour/<%= tour.pk_tour_id %>" class="tileLink"></a>
-
-          <div class="tileTextBg"></div>
-          <div class="tileTextCenter">
-            <div class="tileText">
-              <%= tour.name %>
+        <div class="tileTextBg"></div>
+        <div class="tileTextCenter">
+          <div class="tileText">
+            <%= tour.name %>
+          </div>
+        </div>
+        <div class="tileTextFooterBg"></div>
+        <div class="tileFooterText">
+          <div class="right">
+            Starts at
+            <div class="bus_icon">
+              <div class="bus_stop">
+                <%= tour.fk_bus_stop_start_id %>
+              </div>
             </div>
           </div>
-          <div class="tileTextFooterBg"></div>
-          <div class="tileFooterText">
-            <div class="right">
-              Starts at
-              <div class="bus_icon">
-                <div class="bus_stop">
-                  <%= tour.fk_bus_stop_start_id %>
-                </div>
-              </div>
-            </div>
-            <div class="middle">
-              Cost
-              <div>
-                £<%= tour.cost.toFixed(2) %>
-              </div>
+          <div class="middle">
+            Cost
+            <div>
+              £<%= tour.cost.toFixed(2) %>
             </div>
           </div>
         </div>
       </div>
-      <% }); %>
     </div>
+    <% }); %>
   </div>
 </div>
+
+<h1>Know some stuff?</h1>
+<a href="/spot/add">
+  Add some content and
+  <button class="btn btn-primary">
+    Get Paid
+  </button>
+</a>
+
+<div class="next-stop-push"></div>
+<div class="next-stop-push"></div>
