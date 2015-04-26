@@ -298,6 +298,7 @@ $(document).ready(function () {
     });
 
     $('.vote').click(function (event) {
+      e.preventDefault();
       var type = $(this).hasClass('vote-up') ? 'up' : 'down';
       var spotId = $(this).parents('.vote-form').data('spot-id');
       $.post("/vote",
@@ -314,9 +315,10 @@ $(document).ready(function () {
       $(this).html('<i class="fa fa-check"></i> Thank you for Voting')
     });
 
-    $('a.flag').click(function() {
+    $('a.flag').click(function(e) {
       var lang = $(this).children('.flag-icon').attr('data-lang');
       $('.navbar-collapse').removeClass('in');
+
 
       $('.step-details-text').each(function() {
         var _self = this;
@@ -334,38 +336,7 @@ $(document).ready(function () {
             $(_self).html(data[2][0])
           }
         });
-
       });
     });
   }
-
-  /*
-   if ($('#callRequest')) {
-   $('#callRequest').click(function () {
-   $.ajax({
-   url: '/tourtext/' + $('#callRequest').data('route-id'),
-   cache: false,
-   timeout: 5000,
-   success: function (data) {
-   }
-   });
-   });
-   }
-   if ('#btn_detail_purchase') {
-   $('#btn_detail_purchase').click(function () {
-   var id = $(this).attr('data-id');
-   var url = '/payment/tour/' + id
-   $.ajax({
-   url: url
-   }).success(function (response) {
-   $('#btn_detail_purchase').addClass('hidden');
-   $('#paymentContainer').html(response);
-   $('#payment_cancel_button').click(function () {
-   $('#paymentContainer').empty();
-   $('#btn_detail_purchase').removeClass('hidden');
-   });
-   });
-   });
-
-   }*/
 });
