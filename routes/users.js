@@ -29,7 +29,8 @@ router.get('/', function (req, res, next) {
           + 'from tb_user as user '
           + 'LEFT JOIN tb_spot as spot on spot.fk_user_id = pk_user_id '
           + 'LEFT JOIN tb_spot_vote as vote on vote.fk_spot_id = spot.pk_spot_id '
-          + 'group by username, profile_image';
+          + 'group by username, profile_image '
+          + 'order by owed desc';
   connection.query(
       sql,
       function (err, rows, fields) {
