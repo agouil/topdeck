@@ -63,7 +63,8 @@ router.get('/details/:id', function (req, res, next) {
               image: row.spotImage,
               lng: row.lng,
               lat: row.lat,
-              type: 'spot'
+              type: 'spot',
+              rank: row.rank
             })
           } else {
             var name = row.busStopName.toLowerCase().replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function ($1) {
@@ -77,7 +78,8 @@ router.get('/details/:id', function (req, res, next) {
               image: '/img/bus.jpg',
               lng: row.lng,
               lat: row.lat,
-              type: 'stop'
+              type: 'stop',
+              rank: row.rank
             })
           }
         }

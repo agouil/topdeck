@@ -161,18 +161,25 @@ function calcDistance(lat1, lon1, lat2, lon2) {
   return d;
 }
 
-function goToNextStep() {
-  var currentStep = $('.step.current-step').removeClass('current-step');
+function scrollToStep(step) {
+  var nextStep = $('#step-' + step);
+
+  var currentStep = $('.step.current-step');
   var stepDetails = currentStep.find('.step-details');
-  var nextStep = $(currentStep.next()[0]);
 
   // start moving to the next step before doing anything to keep things aligned
   var container = $('html,body'),
       navbarHeight = 63,
-      prevStepHeight = stepDetails.outerHeight();
+      prevStepHeight = stepDetails ? stepDetails.outerHeight() : 0;
   container.animate({
     scrollTop: nextStep.offset().top - container.offset().top + container.scrollTop() - navbarHeight - prevStepHeight
   });
+}
+
+function showDetailsForStep(step) {
+  var currentStep = $('.step.current-step').removeClass('current-step');
+  var stepDetails = currentStep.find('.step-details');
+  var nextStep = $('#step-' + step);
 
   // hide the details
   stepDetails.collapse('hide');
@@ -180,7 +187,13 @@ function goToNextStep() {
   // show the details of the next step
   nextStep.find('.step-details').collapse('show');
   // scroll down to the next step
+}
 
+function goToNextStep() {
+  var currentStep = $('.step.current-step');
+  var nextStep = currentStep.next().first().data('step');
+  scrollToStep(nextStep);
+  showDetailsForStep(nextStep);
 }
 
 // Calling
