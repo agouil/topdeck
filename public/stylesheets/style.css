@@ -541,3 +541,10 @@ a {
 #tflLogo {
   margin-top: 3px;
 }
+
+#logos.container .row .col-xs-6 img {
+    height: 35px;
+}
+#logos.container .row .col-xs-6  {
+margin-bottom:10px;
+}
