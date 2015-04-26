@@ -9,6 +9,9 @@
     <h1><%= tour.name %></h1>
   </div>
 
+
+  <div class="stop-map-canvas"></div>
+
   <div class="clearfix"></div>
   <div class="step-container">
     <% var i = 0; %>
@@ -40,9 +43,6 @@
         </div>
 
         <%= step.details %>
-        <% } else { %>
-        <div class="stop-map-canvas" data-name="<%= step.name %>"
-             data-lat="<%= step.lat %>" data-lng="<%= step.lng %>"></div>
         <% } %>
 
         <% if (step.type == 'spot') { %>

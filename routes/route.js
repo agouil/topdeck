@@ -50,38 +50,40 @@ router.get('/details/:id', function (req, res, next) {
       var steps = results[0][0];
       var tour = results[1][0][0];
 
-      try{
-      var returnSteps = [];
-      for (var i = 0, len = steps.length; i < len; i++) {
-        var row = steps[i];
-        if (row.spotName) {
-          returnSteps.push({
-            id: row.id,
-            ref: row.spotId,
-            name: row.spotName,
-            details: row.spotText,
-            image: row.spotImage,
-            lng: row.lng,
-            lat: row.lat,
-            type: 'spot'
-          })
-        } else {
-          var name = row.busStopName.toLowerCase().replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function ($1) {
-            return $1.toUpperCase();
-          });
-          returnSteps.push({
-            id: row.id,
-            ref: row.spotId,
-            name: 'Number ' + row.busRoute + ' Bus from ' + name,
-            details: 'map',
-            image: '/img/bus.jpg',
-            lng: row.lng,
-            lat: row.lat,
-            type: 'stop'
-          })
+      try {
+        var returnSteps = [];
+        for (var i = 0, len = steps.length; i < len; i++) {
+          var row = steps[i];
+          if (row.spotName) {
+            returnSteps.push({
+              id: row.id,
+              ref: row.spotId,
+              name: row.spotName,
+              details: row.spotText,
+              image: row.spotImage,
+              lng: row.lng,
+              lat: row.lat,
+              type: 'spot'
+            })
+          } else {
+            var name = row.busStopName.toLowerCase().replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function ($1) {
+              return $1.toUpperCase();
+            });
+            returnSteps.push({
+              id: row.id,
+              ref: row.spotId,
+              name: 'Number ' + row.busRoute + ' Bus from ' + name,
+              details: 'map',
+              image: '/img/bus.jpg',
+              lng: row.lng,
+              lat: row.lat,
+              type: 'stop'
+            })
+          }
         }
+      } catch (err) {
+        console.log(err)
       }
-      } catch (err) {console.log(err)}
       res.render('route', {
         tour: tour,
         tourSteps: returnSteps
