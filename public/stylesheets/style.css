@@ -390,7 +390,12 @@ a {
 }
 
 .voting {
-    margin-bottom: 10px;
+    margin: 15px 0 10px;
+}
+
+
+.vote-form .btn-group {
+    width: 100%;
 }
 
 .next-stop-push {
