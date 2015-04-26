@@ -13,6 +13,7 @@ var route = require('./routes/route');
 var spot = require('./routes/spot');
 var detail = require('./routes/detail');
 var payment = require('./routes/payment');
+var about = require('./routes/about');
 
 var app = express();
 
@@ -39,6 +40,7 @@ app.use('/spot', spot);
 app.use('/dbroute', dbroute);
 app.use('/detail', detail);
 app.use('/payment', payment);
+app.use('/about', about);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
