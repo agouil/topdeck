@@ -8,6 +8,8 @@ var gateway = braintree.connect({
   publicKey: 'pkztbc4b56grbs5j',
   privateKey: '6a925c72a4aa947bf06e5289056fa05d'
 });
+var moment = require('moment');
+moment().format();
 
 var connection = mysql.createConnection({
   host: '10.205.252.133',
@@ -20,7 +22,7 @@ var connection = mysql.createConnection({
 function makePayment(gateway, nonce, tour, response) {
   gateway.transaction.sale({
         amount: tour.cost,
-        paymentMethodNonce: nonce,
+        paymentMethodNonce: nonce
       }, function (err, authResult) {
         if (err) throw err;
         if (authResult.success && authResult.transaction.status == 'authorized') {
@@ -36,17 +38,17 @@ function makePayment(gateway, nonce, tour, response) {
                     // get contributors and their rankings
 
                     var sql = 'SELECT '
-                                + 'pk_user_id as userId, '
-                                + 'count(distinct pk_spot_id) as spots, '
-                                + 'count(type) as votes, '
-                                + 'sum(case when type is null then null when type = \'up\' then 1 else null end) as upVotes, '
-                                + 'sum(case when type is null then null when type = \'down\' then 1 else null end) as downVotes '
-                            + 'from tb_user as user '
-                            + 'INNER JOIN tb_spot as spot on spot.fk_user_id = pk_user_id '
-                            + 'INNER JOIN tb_tour_item as item on spot.pk_spot_id = item.fk_spot_id '
-                            + 'LEFT JOIN tb_spot_vote as vote on vote.fk_spot_id = spot.pk_spot_id '
-                            + 'where item.fk_tour_id = ' + tour.pk_tour_id + ' '
-                            + 'group by pk_user_id';
+                        + 'pk_user_id as userId, '
+                        + 'count(distinct pk_spot_id) as spots, '
+                        + 'count(type) as votes, '
+                        + 'sum(case when type is null then null when type = \'up\' then 1 else null end) as upVotes, '
+                        + 'sum(case when type is null then null when type = \'down\' then 1 else null end) as downVotes '
+                        + 'from tb_user as user '
+                        + 'INNER JOIN tb_spot as spot on spot.fk_user_id = pk_user_id '
+                        + 'INNER JOIN tb_tour_item as item on spot.pk_spot_id = item.fk_spot_id '
+                        + 'LEFT JOIN tb_spot_vote as vote on vote.fk_spot_id = spot.pk_spot_id '
+                        + 'where item.fk_tour_id = ' + tour.pk_tour_id + ' '
+                        + 'group by pk_user_id';
                     connection.query(sql, function (err, result) {
                       console.log(err)
                       console.log(result)
@@ -57,12 +59,10 @@ function makePayment(gateway, nonce, tour, response) {
                       var totalVotes = 0;
                       var insertObj = [];
                       for (var i = 0; i < result.length; i++) {
-                        console.log('result row 1')
                         var row = result[i];
                         totalVotes += parseInt(row.votes);
                       }
                       for (var j = 0; j < result.length; j++) {
-                        console.log('result row 2')
                         var row = result[j];
 
                         userWeight[row.userId] = parseInt(row.votes) / parseInt(totalVotes);
@@ -72,16 +72,41 @@ function makePayment(gateway, nonce, tour, response) {
                         });
                       }
 
-                      console.log(tour.cost);
-                      console.log(userWeight);
-                      console.log(insertObj);
-
-                      connection.query('INSERT INTO tb_payment_user_transaction SET ? ;', insertObj, function(err, result) {});
-
+                      connection.query('INSERT INTO tb_payment_user_transaction SET ? ;', insertObj, function (err, result) {
+                      });
 
                     });
 
                     response.render('success', {tourId: tour.pk_tour_id});
+
+                    var sendgrid = require("sendgrid")('hsearle', 'battlehack15');
+
+                    var now = moment();
+
+
+                    connection.query('SELECT * FROM tb_tour where pk_tour_id = ' + tour.pk_tour_id, function(err, result) {
+                      var tour = result[0];
+
+                      var name = 'Joe';
+                      var fullName = 'Joe Ruggieri';
+                      var emailTo = 'joe.ruggieri@gmail.com';
+
+                      sendgrid.send({
+                        to: emailTo,
+                        toName: fullName,
+                        bcc: 'henry.searle@gmail.com',
+                        from: 'tours@topdeck.co.uk',
+                        fromName: 'TopDeck Tours',
+                        subject: 'Your Tour on ' + now.format('YYYY MMM DD'),
+                        html: 'Hi ' + name + ', <br/><br/>Thank you for purchasing our ' + tour.name + ' tour today. We hope you thoroughly enjoyed it and can continue enjoying the different tours we have to offer.<br/><br/>Your Sincerly,<br/>TopDeck Team.'
+                      }, function (err, json) {
+                        if (err) {
+                          return console.error(err);
+                        }
+                        console.log(json);
+                      });
+                    });
+
                   });
                 }
                 else {
