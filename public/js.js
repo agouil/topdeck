@@ -166,9 +166,10 @@ function goToNextStep() {
 }
 
 // Calling
-$(document).ready(function() {showMapForStep($('.step-details:not(.collapse) .stop-map-canvas'));
+$(document).ready(function() {
+  showMapForStep($('.step-details:not(.collapse) .stop-map-canvas'));
 
-    if ($('#callRequest')) {
+    if ($('#callRequest').length > 0) {
         $('#callRequest').click(function() {
             $.ajax({
                 url: '/tourtext/' + $('#callRequest').data('route-id'),
@@ -179,25 +180,26 @@ $(document).ready(function() {showMapForStep($('.step-details:not(.collapse) .st
             });
         });
     }
-      if ('#btn_detail_purchase') {
-        $('#btn_detail_purchase').click(function(){
-          $('#btn_detail_purchase').addClass('hidden');
-          $('#paymentLoadingGif').removeClass('hidden');
+  if ($('#btn_detail_purchase').length > 0) {
+    $('#btn_detail_purchase').click(function () {
+      $('#btn_detail_purchase').addClass('hidden');
+      $('#paymentLoadingGif').removeClass('hidden');
 
-          var id = $(this).attr('data-id');
-          var url = '/payment/tour/' + id
-          $.ajax({
-              url: url
-          }).success(function (response) {
-            $('#paymentLoadingGif').addClass('hidden');
-            $('#paymentContainer').html(response);
-            $('#payment_cancel_button').click(function() {
-              $('#paymentContainer').empty();
-	            $('iframe').remove();
-              $('#btn_detail_purchase').removeClass('hidden');
-            });
-          });
+      var id = $(this).attr('data-id');
+      var url = '/payment/tour/' + id
+      $.ajax({
+        url: url
+      }).success(function (response) {
+        $('#paymentLoadingGif').addClass('hidden');
+        $('#paymentContainer').html(response);
+        $('#payment_cancel_button').click(function () {
+          $('#paymentContainer').empty();
+          $('iframe').remove();
+          $('#btn_detail_purchase').removeClass('hidden');
         });
+      });
+    });
+  }
 
   $('.start-tour .btn').click(function() {
     goToNextStep();
