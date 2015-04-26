@@ -89,11 +89,12 @@ function showMapForStep(mapCanvas) {
   if (mapCanvas.length > 0 && !mapCanvas.hasClass('init')) {
     mapCanvas.addClass('init');
     mapAddToWaitQueue(function () {
+      var steps= $('.step'),
+          busStop = steps.first();
       var myLatlng = new google.maps.LatLng(
-              $(mapCanvas).data('lat'),
-              $(mapCanvas).data('lng')
-          ),
-          mapOptions = {
+              $(busStop).data('lat'),
+              $(busStop).data('lng')
+          ), mapOptions = {
             zoom: 16,
             center: myLatlng
           },
@@ -102,19 +103,26 @@ function showMapForStep(mapCanvas) {
               mapOptions
           );
 
-      var contentString = $(mapCanvas).data('name');
+      steps.each(function () {
+        var contentString = $(this).find('.step-name .name').text();
 
-      var infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
 
-      var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        title: contentString
-      });
-      google.maps.event.addListener(marker, 'click', function () {
-        infowindow.open(map, marker);
+
+        var myLatlng = new google.maps.LatLng(
+                $(this).data('lat'),
+                $(this).data('lng')
+            ),
+            marker = new google.maps.Marker({
+              position: myLatlng,
+              map: map,
+              title: contentString
+            });
+        google.maps.event.addListener(marker, 'click', function () {
+          infowindow.open(map, marker);
+        });
       });
 
 
@@ -138,9 +146,6 @@ function showMapForStep(mapCanvas) {
   }
 }
 
-$('.step-type-stop .step-details').on('show.bs.collapse', function () {
-  showMapForStep($(this).find('.stop-map-canvas'));
-});
 
 function calcDistance(lat1, lon1, lat2, lon2) {
   var R = 6371; // km (change this constant to get miles)
@@ -180,7 +185,7 @@ function goToNextStep() {
 
 // Calling
 $(document).ready(function () {
-  showMapForStep($('.step-details:not(.collapse) .stop-map-canvas'));
+  showMapForStep($('.stop-map-canvas'));
 
   if ($('#callRequest').length > 0) {
     $('#callRequest').click(function () {
@@ -227,9 +232,14 @@ $(document).ready(function () {
   $('.next-stop .btn').click(function () {
     goToNextStep();
     var currentStep = $('.step.current-step');
-    $('.next-stop .step-distance').html(
-        currentStep.find('.step-distance').html()
-    );
+    if (currentStep.next().length > 0) {
+      $('.next-stop .step-distance').html(
+          currentStep.find('.step-distance').html()
+      );
+    } else {
+      $(this).parent('.next-stop').hide();
+      $('.tour-done').show();
+    }
   });
 
   if ($('.tour').length > 0) {

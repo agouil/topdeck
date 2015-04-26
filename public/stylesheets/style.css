@@ -335,6 +335,11 @@ a {
 .stop-map-canvas {
     height: 300px;
     width: 100%;
+    margin-bottom: 20px;
+}
+
+.tour-done .btn {
+    margin-left: 10px;
 }
 
 #callRequest {
