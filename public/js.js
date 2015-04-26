@@ -313,6 +313,34 @@ $(document).ready(function () {
       $(this).addClass('col-xs-12').removeClass('col-xs-6')
       $(this).html('<i class="fa fa-check"></i> Thank you for Voting')
     });
+
+    $('a.flag').click(function() {
+      var lang = $(this).children('.flag-icon').attr('data-lang');
+      var textToUpdate = $('.step');
+      
+var remaining = textToUpdate.length;
+
+      for (i = 0; i < textToUpdate.length; i++) {
+        if (textToUpdate.children('.step-details-text')) {
+          var id = textToUpdate.attr('data-step');
+  	  $.ajax({
+            url: 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20150426T023609Z.c75f708b87a721ba.694b87f3beb45ac835a7b9d0a510191c30e20f91&lang=en-' 
+	      + lang + '&text=' + $(textToUpdate[i]).html(),
+            cache: false,
+            timeout: 5000,
+            success: function (data) {
+              var data = $.map(data, function(value, key) {
+                return [value];
+	      });
+	      $('#step-' + id).children('.step-details-text').html(data[2][0]);
+  	      remaining--;
+	      console.log(remaining);
+	    }
+          });
+	} 
+      }
+      console.log(textToUpdate);
+    });
   }
 
   /*
