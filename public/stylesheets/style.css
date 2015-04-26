@@ -445,3 +445,7 @@ a {
 .successContainer .btnContainer button {
   margin:auto;
 }
+
+#navbar .dropdown .flag-icon {
+  margin-right: 5px;
+}
