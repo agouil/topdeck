@@ -291,7 +291,7 @@ a {
   display:none;
 }
 
-#checkout {
+#checkout.checkoutBorder {
   border: solid 1px #CCCCCC;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
