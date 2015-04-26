@@ -57,7 +57,7 @@
         </div>
         <div class="step-details-text" id="step-details-text-<%= step.id %>" data-current='en' data-locale='en-GB'>
           <%= step.details %>
-	       </div>
+        </div>
         <% } %>
 
         <% if (step.type == 'spot') { %>
@@ -66,17 +66,18 @@
           <div class="row">
             <form class="form-inline vote-form" data-spot-id="<%= step.ref %>">
               <input type="hidden" name="step-id" value="<%= step.id %>"/>
+
               <div class="form-group col-xs-12">
                 <div class="row">
                   <div class="btn-group" role="group">
-                      <button type="button" class="col-xs-6 btn btn-success vote vote-up">
-                        <i class="fa fa-thumbs-up"></i>
-                        Guide
-                      </button>
-                      <button type="button" class="col-xs-6 btn btn-danger vote vote-down">
-                        <i class="fa fa-thumbs-down"></i>
-                        Guide
-                      </button>
+                    <button type="button" class="col-xs-6 btn btn-success vote vote-up">
+                      <i class="fa fa-thumbs-up"></i>
+                      Guide
+                    </button>
+                    <button type="button" class="col-xs-6 btn btn-danger vote vote-down">
+                      <i class="fa fa-thumbs-down"></i>
+                      Guide
+                    </button>
                   </div>
                 </div>
               </div>
@@ -127,5 +128,7 @@
     <button class="btn default pull-right">
       <i class="fa left"></i> Back
     </button>
-    div>
+    <div>
+    </div>
   </div>
+</div>
