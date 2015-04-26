@@ -2,32 +2,35 @@
 
 <div class="container">
   <div class="row">
-  <h1> Select your tour </h1>
+    <h1>Explore London</h1>
 
     <% tours.forEach(function(tour) { %>
     <div class="col-md-6">
-      <div class="tileHolder" style="background: url('<%= tour.img %>') no-repeat scroll center center transparent;">
-        <a href="/detail/tour/<%= tour.pk_tour_id %>" class="tileLink"></a>
-        <div class="tileTextBg"></div>
-        <div class="tileTextCenter">
-        <div class="tileText">
-          <%= tour.name %>
-        </div>
-        </div>
-        <div class="tileTextFooterBg"></div>
-        <div class="tileFooterText">
-          <div class="right">
-            Starts at
-            <div class="bus_icon">
-              <div class="bus_stop">
-                <%= tour.fk_bus_stop_start_id %>
-              </div>
+      <div class="row">
+        <div class="tileHolder" style="background: url('<%= tour.img %>') no-repeat scroll center center transparent;">
+          <a href="/detail/tour/<%= tour.pk_tour_id %>" class="tileLink"></a>
+
+          <div class="tileTextBg"></div>
+          <div class="tileTextCenter">
+            <div class="tileText">
+              <%= tour.name %>
             </div>
           </div>
-          <div class="middle">
-            Cost
-            <div>
+          <div class="tileTextFooterBg"></div>
+          <div class="tileFooterText">
+            <div class="right">
+              Starts at
+              <div class="bus_icon">
+                <div class="bus_stop">
+                  <%= tour.fk_bus_stop_start_id %>
+                </div>
+              </div>
+            </div>
+            <div class="middle">
+              Cost
+              <div>
                 £<%= tour.cost.toFixed(2) %>
+              </div>
             </div>
           </div>
         </div>
