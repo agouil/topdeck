@@ -298,6 +298,7 @@ $(document).ready(function () {
     });
 
     $('.vote').click(function (event) {
+      e.preventDefault();
       var type = $(this).hasClass('vote-up') ? 'up' : 'down';
       var spotId = $(this).parents('.vote-form').data('spot-id');
       $.post("/vote",
@@ -313,35 +314,29 @@ $(document).ready(function () {
       $(this).addClass('col-xs-12').removeClass('col-xs-6')
       $(this).html('<i class="fa fa-check"></i> Thank you for Voting')
     });
+
+    $('a.flag').click(function(e) {
+      var lang = $(this).children('.flag-icon').attr('data-lang');
+      $('.navbar-collapse').removeClass('in');
+
+
+      $('.step-details-text').each(function() {
+        var _self = this;
+        $.ajax({
+          url: 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20150426T023609Z.c75f708b87a721ba.694b87f3beb45ac835a7b9d0a510191c30e20f91&lang='
+              + $(this).attr('data-current') + '-'
+              + lang + '&text=' + $(this).html(),
+          cache: false,
+          timeout: 5000,
+          success: function (data) {
+            var data = $.map(data, function(value, key) {
+              return [value];
+            });
+            $(_self).attr('data-current', lang)
+            $(_self).html(data[2][0])
+          }
+        });
+      });
+    });
   }
-
-  /*
-   if ($('#callRequest')) {
-   $('#callRequest').click(function () {
-   $.ajax({
-   url: '/tourtext/' + $('#callRequest').data('route-id'),
-   cache: false,
-   timeout: 5000,
-   success: function (data) {
-   }
-   });
-   });
-   }
-   if ('#btn_detail_purchase') {
-   $('#btn_detail_purchase').click(function () {
-   var id = $(this).attr('data-id');
-   var url = '/payment/tour/' + id
-   $.ajax({
-   url: url
-   }).success(function (response) {
-   $('#btn_detail_purchase').addClass('hidden');
-   $('#paymentContainer').html(response);
-   $('#payment_cancel_button').click(function () {
-   $('#paymentContainer').empty();
-   $('#btn_detail_purchase').removeClass('hidden');
-   });
-   });
-   });
-
-   }*/
 });
