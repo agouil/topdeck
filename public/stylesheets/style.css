@@ -406,3 +406,27 @@ a {
 .overflow {
     overflow: hidden;
 }
+
+.successContainer .fui-check {
+  padding-right: 5px;
+}
+
+.successContainer {
+  padding-top: 15px;
+}
+
+.successContainer .title {
+  font-size: 20px;
+}
+
+.right {
+  float:right;
+}
+
+.successContainer .btnContainer {
+  text-align: center;
+}
+
+.successContainer .btnContainer button {
+  margin:auto;
+}
