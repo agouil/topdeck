@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var braintree = require('braintree');
+var q = require('Q');
 
 /* GET home page. */
 router.get('/tour/:id', function(req, res, next) {
@@ -20,24 +21,39 @@ router.get('/tour/:id', function(req, res, next) {
       return;
     }
 
-    console.log('connected as id ' + connection.threadId);
-
     var tours = false;
     var tourId = req.params.id;
-    var sql = 'select * ' +
-              'from tb_spot s '  +
-              'join tb_tour_item ti ' +
-              'on s.pk_spot_id = ti.fk_spot_id ' +
-              'where ti.fk_tour_id = ' + tourId + ' ' +
-              'and ti.fk_bus_sequence_id = 0';
-    connection.query(sql, function(err, rows, fields) {
-      if (err) throw err;
-	  res.render('detail', {
-	  		spots: rows
-		});
+
+    function getSpotsQuery(){
+      var deferred = q.defer();
+      var sql = 'select * ' +
+            'from tb_spot s '  +
+            'join tb_tour_item ti ' +
+            'on s.pk_spot_id = ti.fk_spot_id ' +
+            'where ti.fk_tour_id = ' + tourId + ' ' +
+            'and ti.fk_bus_sequence_id = 0';
+      connection.query(sql, deferred.makeNodeResolver());
+      return deferred.promise;
+    }
+
+    function getTourQuery(){
+        var deferred = q.defer();
+        var sql = 'select * from tb_tour where pk_tour_id = ' + tourId;
+        connection.query(sql, deferred.makeNodeResolver());
+        return deferred.promise;
+    }
 
 
-    });
+        q.all([getSpotsQuery(),getTourQuery()]).then(function(results) {
+          var tour = results[1][0][0];
+          var spots = results[0][0];
+
+            res.render('detail', {
+               spots: spots,
+                tour: tour
+            });
+          });
+
   });
 
 
