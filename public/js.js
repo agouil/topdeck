@@ -298,7 +298,6 @@ $(document).ready(function () {
     });
 
     $('.vote').click(function (event) {
-      e.preventDefault();
       var type = $(this).hasClass('vote-up') ? 'up' : 'down';
       var spotId = $(this).parents('.vote-form').data('spot-id');
       $.post("/vote",
@@ -316,6 +315,7 @@ $(document).ready(function () {
     });
 
     $('a.flag').click(function(e) {
+      e.preventDefault();
       var lang = $(this).children('.flag-icon').attr('data-lang');
       $('.navbar-collapse').removeClass('in');
 

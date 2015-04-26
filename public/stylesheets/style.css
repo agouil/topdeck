@@ -490,3 +490,13 @@ a {
 .users {
     font-size: 14px;
 }
+
+#yandexLogo {
+  width: 90% !important;
+  top: -1px;
+}
+
+#sendgridLogo {
+  top: 16px;
+  position: relative;
+}
