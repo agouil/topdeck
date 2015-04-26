@@ -42,6 +42,9 @@ function makePayment(gateway, nonce, tour, response)  {
   });
 }
 
+router.get('/success', function(req, res, next) {
+  res.render('success', {tourId : 1})
+})
 router.get('/tour/:id', function(req, res, next) {
   gateway.clientToken.generate({}, function (err, result) {
     if (err) throw err;
@@ -61,7 +64,7 @@ router.post('/process', function(req, res, next) {
   });
   connection.query('select * from tb_tour where pk_tour_id = ' + tourId, function (err, rows, fields) {
     var tour = rows[0];
-    makePayment(gateway, nonce, tour, res); 
+    makePayment(gateway, nonce, tour, res);
   });
 });
 

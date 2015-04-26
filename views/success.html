@@ -1,7 +1,16 @@
 <% layout('boilerplate') -%>
 
-<h1>Your payment was successful!</h1>
 
-<a href="/tour/details/<%= tourId %>">
-  <button class="btn btn-success">Enjoy your tour!</button>
-</a>
+<div class="successContainer">
+  <div class="title">
+    <div class="alert alert-success" role="alert">
+      <span class="fui-check"></span> Your payment was successful!
+    </div>
+  </div>
+
+  <div class="btnContainer">
+    <a href="/tour/details/<%= tourId %>">
+      <button class="btn btn-primary">Continue</button>
+    </a>
+  </div>
+</div>
