@@ -1,4 +1,5 @@
 var express = require('express');
+var request = require('request');
 var router = express.Router();
 
 var q = require('Q');
@@ -74,6 +75,8 @@ router.get('/details/:id', function (req, res, next) {
               id: row.id,
               ref: row.spotId,
               name: 'Number ' + row.busRoute + ' Bus from ' + name,
+	      busLineId: row.busRoute,
+	      busStopName: name.replace(/ /g,"_"),
               details: 'map',
               image: '/img/bus.jpg',
               lng: row.lng,
@@ -102,6 +105,17 @@ router.get('/details/:id', function (req, res, next) {
         connection.destroy();
       });
     });
+  });
+});
+
+router.get('/tfl/countdown/:busLineId/:busStopName', function(req, res, next) {
+  var url = 'http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?ReturnList=StopPointName,LineName,EstimatedTime,DirectionID'
+	+ '&LineID=' + req.params.busLineId + '&StopPointName=' + req.params.busStopName.replace('/_/g', ' ');
+  request(url, function(error, response, body) {
+    var splitBody = body.split('\r\n');
+    var currentTimeMs = JSON.parse(splitBody[0])[2];
+    var nextBusArrivesMs = JSON.parse(splitBody[1])[4];
+    res.send({nextBusTime: Math.round((nextBusArrivesMs - currentTimeMs)/ 60000, 0)});
   });
 });
 

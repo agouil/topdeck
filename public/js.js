@@ -52,7 +52,6 @@ mapAddToWaitQueue(function () {
 });
 
 function populateLocationData() {
-  console.log('getlocation')
   $('.step-container').each(function (i, steps) {
     function showPosition(position) {
       $(steps).find('.step').each(function (i, step) {
@@ -66,6 +65,28 @@ function populateLocationData() {
             );
 
         $(step).find('.step-distance').html(distance);
+	if ($(step).hasClass('step-type-stop')) {
+	  var countdown = $(step).find('span.step-countdown');
+	  if ($(countdown).html() == '') {
+	  	  var lineId = $(countdown).data('lineid');
+		  var busStopName = $(countdown).data('bus-stop-name').replace(/_/g," ");
+		  $.ajax({
+	            url: '/tour/tfl/countdown/' + lineId + '/' + busStopName,
+       		    cache: false,
+       	     	    timeout: 5000,
+       	    	    success: function (data) {
+		      var data = $.map(data, function(value, key) {
+           	       return [value];
+            	      });
+		      var minsText = 'mins';
+		      if (data[0] == 1) {
+			      minsText = 'min';
+		      }
+		      $(countdown).html('departs in ' + data[0] + minsText);
+                    }
+          	});
+	  }
+	}
       });
 
 

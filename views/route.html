@@ -40,7 +40,10 @@
         </div>
         <div class="step-name">
           <strong class="name">
-            <%= step.name %>
+		  <span class="step-name-text"><%= step.name %></span>
+	    <% if (step.type == 'stop') { %>
+              <span class="step-countdown" data-lineid="<%= step.busLineId %>" data-bus-stop-name=<%= step.busStopName %>></span>
+	    <% } %>
             <span class="step-distance"></span>
           </strong>
         </div>
