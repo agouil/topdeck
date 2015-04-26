@@ -46,14 +46,14 @@
     <div class="spotTitle"> What you'll be seeing </div>
     <% for (var i = 0; i < spots.length; i++) { %>
       <div class="row spotRow">
-        <div class="col-xs-1 spot">
+        <div class="pull-left spot">
           <div class="img-circle-border">
             <div class="img-circle">
               <div class="step-icon background-cover" style="background-image: url('<%= spots[i].img %>')"></div>
             </div>
           </div>
         </div>
-        <div class="col-xs-11">
+        <div class="overflow">
           <div class="spotText"> <%= spots[i].name %></div>
         </div>
       </div>

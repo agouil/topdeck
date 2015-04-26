@@ -1,9 +1,10 @@
-
 <% layout('boilerplate') -%>
 
 <div class="container">
+  <div class="row">
   <h1> Select your tour </h1>
-  <% tours.forEach(function(tour) { %>
+
+    <% tours.forEach(function(tour) { %>
     <div class="col-md-6">
       <div class="tileHolder" style="background: url('<%= tour.img %>') no-repeat scroll center center transparent;">
         <a href="/detail/tour/<%= tour.pk_tour_id %>" class="tileLink"></a>
@@ -32,5 +33,6 @@
         </div>
       </div>
     </div>
-   <% }); %>
+    <% }); %>
+  </div>
 </div>

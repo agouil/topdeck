@@ -17,6 +17,7 @@ a {
     width: 100%;
     display: inline-block;
     margin-bottom: 5px;
+    background-size: cover!important;
 }
 
 .tileHolder a {
@@ -56,7 +57,6 @@ a {
 }
 
 .tileHolder .tileText {
-  font-family: 'Roboto', Arial, sans-serif;
   position: absolute;
   text-align: center;
   width: 100%;
@@ -64,7 +64,6 @@ a {
 }
 
 .tileHolder .tileFooterText {
-  font-family: 'Roboto', Arial, sans-serif;
   position: absolute;
   text-align: center;
   width: 100%;
@@ -91,7 +90,6 @@ a {
   font-size: 20px;
   height: 50px;
   top: 1px;
-  text-transform: uppercase;
 }
 
 .tileHolder .tileFooterText {
@@ -100,7 +98,6 @@ a {
 }
 
 .tileHolder .tileFooterBusStop {
-  font-family: 'Roboto', Arial, sans-serif;
   position: absolute;
   text-align: center;
   width: 20%;
@@ -205,8 +202,7 @@ a {
 }
 
 .detailContainer .spotsInfo .spot {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 10px 10px 0;
 }
 
 .step {
@@ -341,7 +337,7 @@ a {
 }
 
 #callRequest {
-    margin-bottom: 20px;
+    margin: 0 10px 10px;
 }
 
 #paymentLoadingGif {
@@ -370,4 +366,36 @@ a {
 
 #peopleContainer {
   margin-bottom:20px;
+}
+
+.voting {
+    margin-bottom: 10px;
+}
+
+.next-stop-push {
+    height: 59px;
+    width: 100%;
+}
+.next-stop-container {
+    position: fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:60px;
+    padding: 7px 15px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.8) , rgba(255,255,255,0.8));
+    border-top: 1px solid #34495E;
+}
+
+.next-stop-container .step-distance {
+    color: #1ABC9C;
+}
+
+.next-stop-container .align-text {
+    line-height: 40px;
+    display: inline-block;
+}
+
+.overflow {
+    overflow: hidden;
 }
