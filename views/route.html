@@ -49,13 +49,13 @@
       <div id="step-details-<%= step.id %>" class="step-details collapse">
         <% if (step.type == 'spot') { %>
         <div class="pull-right">
-          <button id="callRequest" type="button" data-route-id="1"
-                  class="btn btn-info pull-right">
+          <button type="button" data-spot-id="<%= step.id %>"
+                  class="btn btn-info pull-right callRequest">
             Audio Guide By Phone &nbsp;
             <i class="fa fa-phone"></i>
           </button>
         </div>
-         <div class="step-details-text" id="step-details-text-<%= step.id %>" data-current='en'>
+        <div class="step-details-text" id="step-details-text-<%= step.id %>" data-current='en' data-locale='en-GB'>
           <%= step.details %>
 	       </div>
         <% } %>
