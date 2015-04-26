@@ -32,7 +32,7 @@ a {
 .tileTextBg {
     opacity: 0.80;
     top: 0;
-    width: 40%;
+    width: 80%;
     position: absolute;
     height: 35px;
     background: none repeat scroll 0 0 #1abc9c;
@@ -41,18 +41,18 @@ a {
 
 .tileTextCenter {
   top: 0;
-  width: 40%;
+  width: 80%;
   position: absolute;
 }
 
 .tileTextFooterBg {
     opacity: 0.80;
-    width: 30%;
+    width: 60%;
     position: absolute;
     height: 55px;
     background: none repeat scroll 0 0 #1abc9c;
     top: 145px;
-    left: 70%;
+    left: 40%;
     border-radius: 10px 0 0 0;
 }
 
@@ -83,7 +83,8 @@ a {
 
 .tileHolder .tileFooterText .right {
   float:right;
-  padding-right: 15px;
+  padding-left: 4%;
+  padding-right: 7%;
 }
 
 .tileHolder .tileText {
