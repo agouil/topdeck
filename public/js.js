@@ -66,8 +66,16 @@ function populateLocationData() {
             );
 
         $(step).find('.step-distance').html(distance);
-
       });
+
+
+      if (mapLocMarker) {
+        var newLatLng = new google.maps.LatLng(
+            position.coords.latitude,
+            position.coords.longitude
+        );
+        mapLocMarker.setPosition(newLatLng);
+      }
     }
 
     if (navigator.geolocation) {
@@ -76,7 +84,7 @@ function populateLocationData() {
   });
 }
 
-
+var mapLocMarker = null;
 function showMapForStep(mapCanvas) {
   if (mapCanvas.length > 0 && !mapCanvas.hasClass('init')) {
     mapCanvas.addClass('init');
@@ -110,7 +118,7 @@ function showMapForStep(mapCanvas) {
       });
 
 
-      var myloc = new google.maps.Marker({
+      mapLocMarker = new google.maps.Marker({
         clickable: false,
         icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
             new google.maps.Size(22, 22),
@@ -123,7 +131,7 @@ function showMapForStep(mapCanvas) {
 
       if (navigator.geolocation) navigator.geolocation.getCurrentPosition(function (pos) {
         var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-        myloc.setPosition(me);
+        mapLocMarker.setPosition(me);
       });
 
     });
@@ -166,20 +174,20 @@ function goToNextStep() {
 }
 
 // Calling
-$(document).ready(function() {
+$(document).ready(function () {
   showMapForStep($('.step-details:not(.collapse) .stop-map-canvas'));
 
-    if ($('#callRequest').length > 0) {
-        $('#callRequest').click(function() {
-            $.ajax({
-                url: '/tourtext/' + $('#callRequest').data('route-id'),
-                cache: false,
-                timeout: 5000,
-                success: function(data) {
-                }
-            });
-        });
-    }
+  if ($('#callRequest').length > 0) {
+    $('#callRequest').click(function () {
+      $.ajax({
+        url: '/tourtext/' + $('#callRequest').data('route-id'),
+        cache: false,
+        timeout: 5000,
+        success: function (data) {
+        }
+      });
+    });
+  }
   if ($('#btn_detail_purchase').length > 0) {
     $('#btn_detail_purchase').click(function () {
       $('#btn_detail_purchase').addClass('hidden');
@@ -201,7 +209,7 @@ $(document).ready(function() {
     });
   }
 
-  $('.start-tour .btn').click(function() {
+  $('.start-tour .btn').click(function () {
     goToNextStep();
     $(this).parent('.start-tour').hide();
     $('.next-stop').show();
@@ -211,7 +219,7 @@ $(document).ready(function() {
     );
   });
 
-  $('.next-stop .btn').click(function() {
+  $('.next-stop .btn').click(function () {
     goToNextStep();
     var currentStep = $('.step.current-step');
     $('.next-stop .step-distance').html(
@@ -219,39 +227,39 @@ $(document).ready(function() {
     );
   });
 
-  if ($('#tour').length > 0) {
+  if ($('.tour').length > 0) {
     populateLocationData();
 
     setInterval(populateLocationData, 5000);
   }
 
-/*
-  if ($('#callRequest')) {
-    $('#callRequest').click(function () {
-      $.ajax({
-        url: '/tourtext/' + $('#callRequest').data('route-id'),
-        cache: false,
-        timeout: 5000,
-        success: function (data) {
-        }
-      });
-    });
-  }
-  if ('#btn_detail_purchase') {
-    $('#btn_detail_purchase').click(function () {
-      var id = $(this).attr('data-id');
-      var url = '/payment/tour/' + id
-      $.ajax({
-        url: url
-      }).success(function (response) {
-        $('#btn_detail_purchase').addClass('hidden');
-        $('#paymentContainer').html(response);
-        $('#payment_cancel_button').click(function () {
-          $('#paymentContainer').empty();
-          $('#btn_detail_purchase').removeClass('hidden');
-        });
-      });
-    });
+  /*
+   if ($('#callRequest')) {
+   $('#callRequest').click(function () {
+   $.ajax({
+   url: '/tourtext/' + $('#callRequest').data('route-id'),
+   cache: false,
+   timeout: 5000,
+   success: function (data) {
+   }
+   });
+   });
+   }
+   if ('#btn_detail_purchase') {
+   $('#btn_detail_purchase').click(function () {
+   var id = $(this).attr('data-id');
+   var url = '/payment/tour/' + id
+   $.ajax({
+   url: url
+   }).success(function (response) {
+   $('#btn_detail_purchase').addClass('hidden');
+   $('#paymentContainer').html(response);
+   $('#payment_cancel_button').click(function () {
+   $('#paymentContainer').empty();
+   $('#btn_detail_purchase').removeClass('hidden');
+   });
+   });
+   });
 
-  }*/
+   }*/
 });
