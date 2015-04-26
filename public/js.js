@@ -89,7 +89,7 @@ function showMapForStep(mapCanvas) {
   if (mapCanvas.length > 0 && !mapCanvas.hasClass('init')) {
     mapCanvas.addClass('init');
     mapAddToWaitQueue(function () {
-      var steps= $('.step'),
+      var steps = $('.step'),
           busStop = steps.first();
       var myLatlng = new google.maps.LatLng(
               $(busStop).data('lat'),
@@ -104,7 +104,11 @@ function showMapForStep(mapCanvas) {
           );
 
       steps.each(function () {
-        var contentString = $(this).find('.step-name .name').text();
+        var stepNumber = $(this).data('step'),
+            contentString = $(this).find('.step-name .name').text()
+                + '<br/>'
+                + '<button class="btn btn-primary" data-step="' + stepNumber
+                + '">See guide</button>';
 
         var infowindow = new google.maps.InfoWindow({
           content: contentString
@@ -189,11 +193,15 @@ function showDetailsForStep(step) {
   // scroll down to the next step
 }
 
+function goToStep(step) {
+  scrollToStep(step);
+  showDetailsForStep(step);
+}
+
 function goToNextStep() {
   var currentStep = $('.step.current-step');
   var nextStep = currentStep.next().first().data('step');
-  scrollToStep(nextStep);
-  showDetailsForStep(nextStep);
+  goToStep(nextStep);
 }
 
 // Calling
@@ -232,35 +240,58 @@ $(document).ready(function () {
     });
   }
 
-  $('.start-tour .btn').click(function () {
-    goToNextStep();
-    $(this).parent('.start-tour').hide();
-    $('.next-stop').show();
-    var currentStep = $('.step.current-step');
-    $('.next-stop .step-distance').html(
-        currentStep.find('.step-distance').html()
-    );
-  });
-
-  $('.next-stop .btn').click(function () {
-    goToNextStep();
-    var currentStep = $('.step.current-step');
-    if (currentStep.next().length > 0) {
-      $('.next-stop .step-distance').html(
-          currentStep.find('.step-distance').html()
-      );
-    } else {
-      $(this).parent('.next-stop').hide();
-      $('.tour-done').show();
-    }
-  });
-
   if ($('.tour').length > 0) {
     $('.step').first().find('.step-details').collapse('show');
 
     populateLocationData();
 
     setInterval(populateLocationData, 5000);
+
+    $('.stop-map-canvas').on('click', '.btn', function (event) {
+      var button = $(event.target);
+      goToStep(button.data('step'));
+    });
+
+
+    $('.start-tour .btn').click(function () {
+      goToNextStep();
+      $(this).parent('.start-tour').hide();
+      $('.next-stop').show();
+      var currentStep = $('.step.current-step');
+      $('.next-stop .step-distance').html(
+          currentStep.find('.step-distance').html()
+      );
+    });
+
+    $('.next-stop .btn').click(function () {
+      goToNextStep();
+      var currentStep = $('.step.current-step');
+      if (currentStep.next().length > 0) {
+        $('.next-stop .step-distance').html(
+            currentStep.find('.step-distance').html()
+        );
+      } else {
+        $(this).parent('.next-stop').hide();
+        $('.tour-done').show();
+      }
+    });
+
+    $('.vote').click(function (event) {
+      var type = $(this).hasClass('vote-up') ? 'up' : 'down';
+      var stopId = $(this).parent('.vote-form').data('spot-id');
+      $.post("/vote",
+          {
+            stopId: stopId,
+            type: type
+          },
+          function (data) {
+
+          });
+      $(this).siblings().hide();
+      $(this).parent('.btn-group').removeClass('btn-group');
+      $(this).addClass('col-xs-12').removeClass('col-xs-6')
+      $(this).html('<i class="fa fa-check"></i> Thank you for Voting')
+    });
   }
 
   /*
