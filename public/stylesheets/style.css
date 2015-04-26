@@ -448,6 +448,7 @@ a {
     padding: 7px 15px;
     background: linear-gradient(180deg, rgba(255,255,255,0.8) , rgba(255,255,255,0.8));
     border-top: 1px solid #34495E;
+    z-index: 100000;
 }
 
 .next-stop-container .step-distance {
@@ -536,4 +537,58 @@ a {
     .upload-box h2 {
         font-size: 38px;
     }
+}
+
+#tflLogo {
+  margin-top: 3px;
+}
+
+.display-inline {
+    display: inline-block;
+}
+
+body .navbar-inverse {
+    background-color: #E74C3C;
+}
+.navbar-inverse .navbar-nav>li>a:hover,
+.navbar-inverse .navbar-nav>li>a:focus
+
+body .navbar-inverse .navbar-nav>.open>a,
+body .navbar-inverse .navbar-nav>.open>a:hover,
+body .navbar-inverse .navbar-nav>.open>a:focus,
+body .navbar-inverse .navbar-nav>.open>a,
+body .navbar-inverse .navbar-nav>.open>a:hover,
+body .navbar-inverse .navbar-nav>.open>a:focus,
+body .navbar-inverse .navbar-nav>.active>a,
+body .navbar-inverse .navbar-nav>.active>a:hover,
+body .navbar-inverse .navbar-nav>.active>a:focus {
+    background-color:#A01607;
+}
+
+body .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover,
+body .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus {
+    color: #FF998E;
+}
+body .navbar-toggle:hover:before,
+body .navbar-toggle:focus:before,
+body .navbar-inverse .navbar-nav>li>a:hover,
+body .navbar-inverse .navbar-nav>li>a:focus,
+body .navbar-inverse .navbar-toggle:hover:before,
+body .navbar-inverse .navbar-toggle:focus:before,
+body .navbar-toggle:hover:before,
+body .navbar-toggle:focus:before,
+body .navbar-inverse .navbar-brand:hover,
+body .navbar-inverse .navbar-brand:focus {
+    color:#A01607;
+}
+body .navbar-inverse .navbar-nav>.dropdown>a:hover .caret,
+body .navbar-inverse .navbar-nav>.dropdown>a:focus .caret {
+    border-top-color: #A01607;
+    border-bottom-color: #A01607;
+}
+#logos.container .row .col-xs-6 img {
+    height: 35px;
+}
+#logos.container .row .col-xs-6  {
+margin-bottom:10px;
 }

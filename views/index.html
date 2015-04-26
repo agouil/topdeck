@@ -1,9 +1,11 @@
 <% layout('boilerplate') -%>
 
 <div class="row">
-  <h1>Explore London</h1>
-
-  <div class="row">
+  <div class="col-xs-12">
+    <h3 style="font-size: 49px;">Explore London</h3>
+  </div>
+  <div class="clearfix"></div>
+  <div>
     <% tours.forEach(function(tour) { %>
     <div class="col-md-6">
       <div class="tileHolder" style="background: url('<%= tour.img %>') no-repeat scroll center center transparent;">
@@ -21,7 +23,7 @@
             Starts at
             <div class="bus_icon">
               <div class="bus_stop">
-                <%= tour.fk_bus_stop_start_id %>
+                <%= tour.stop_letter %>
               </div>
             </div>
           </div>

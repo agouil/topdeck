@@ -45,6 +45,7 @@ router.post('/add', function(req, res, next) {
             // there is a request and the form is valid
             // form.data contains the submitted data
             connection.query('INSERT INTO tb_spot SET ? ;SELECT LAST_INSERT_ID() as id;', form.data, function(err, result) {
+                console.log(err)
                 res.redirect('/spot/view/' + result.id)
             });
         }

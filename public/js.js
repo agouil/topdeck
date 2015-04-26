@@ -247,17 +247,23 @@ $(document).ready(function () {
     $('.dropdown-toggle').dropdown();
   }
 
-  if ($('#callRequest').length > 0) {
-    $('#callRequest').click(function () {
+  $('.callRequest').each(function(index, ele) {
+    $(ele).click(function () {
+      $(this).children('.fa-phone').addClass('fa-spin');
+      var language = $(".step-details-text").first();
       $.ajax({
-        url: '/tourtext/' + $('#callRequest').data('route-id'),
+        url: '/tourtext/' 
+        + $(ele).data('spot-id')
+        + '/'
+        + language.data('locale'),
         cache: false,
         timeout: 5000,
         success: function (data) {
         }
       });
     });
-  }
+  });
+
   if ($('#btn_detail_purchase').length > 0) {
     $('#btn_detail_purchase').click(function () {
       global_timer = setInterval(function () {
@@ -372,6 +378,16 @@ $(document).ready(function () {
               return [value];
             });
             $(_self).attr('data-current', lang)
+            var langLocaleMap = {
+                'en'    : 'en-GB',
+                'fr'    : 'fr-FR',
+                'es'    : 'es-ES',
+                'de'    : 'de-DE',
+                'it'    : 'it-IT',
+                'ja'    : 'ja-JP',
+                'ko'    : 'ko-KR'
+            };
+            $(_self).attr('data-locale', langLocaleMap[lang]);
             $(_self).html(data[2][0])
           }
         });
