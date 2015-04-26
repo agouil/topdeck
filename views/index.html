@@ -8,18 +8,25 @@
       <div class="tileHolder" style="background: url('<%= tour.img %>') no-repeat scroll center center transparent;">
         <a href="/detail/tour/<%= tour.pk_tour_id %>" class="tileLink"></a>
         <div class="tileTextBg"></div>
+        <div class="tileTextCenter">
         <div class="tileText">
           <%= tour.name %>
         </div>
+        </div>
         <div class="tileTextFooterBg"></div>
         <div class="tileFooterText">
-          <div class="left"> <%= tour.description %> </div>
           <div class="right">
             Starts at
             <div class="bus_icon">
               <div class="bus_stop">
                 <%= tour.fk_bus_stop_start_id %>
               </div>
+            </div>
+          </div>
+          <div class="middle">
+            Cost
+            <div>
+                £<%= tour.cost.toFixed(2) %>
             </div>
           </div>
         </div>

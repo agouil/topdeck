@@ -31,19 +31,28 @@ a {
 .tileTextBg {
     opacity: 0.80;
     top: 0;
-    width: 100%;
+    width: 40%;
     position: absolute;
     height: 35px;
     background: none repeat scroll 0 0 #1abc9c;
+    border-radius: 0 0 10px 0;
+}
+
+.tileTextCenter {
+  top: 0;
+  width: 40%;
+  position: absolute;
 }
 
 .tileTextFooterBg {
     opacity: 0.80;
-    width: 100%;
+    width: 30%;
     position: absolute;
     height: 55px;
     background: none repeat scroll 0 0 #1abc9c;
     top: 145px;
+    left: 70%;
+    border-radius: 10px 0 0 0;
 }
 
 .tileHolder .tileText {
@@ -63,14 +72,19 @@ a {
 }
 
 .tileHolder .tileFooterText .left {
-  width: 80%;
   height: 100%;
-  float:left;
+  float: left;
+  width: 60%
+}
+
+.tileHolder .tileFooterText .middle {
+  float: right;
+  width: 20%;
 }
 
 .tileHolder .tileFooterText .right {
   float:right;
-  padding-right: 5px;
+  padding-right: 15px;
 }
 
 .tileHolder .tileText {
