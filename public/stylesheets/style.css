@@ -492,11 +492,15 @@ a {
 }
 
 #yandexLogo {
-  width: 90% !important;
-  top: -1px;
+  top: -10px;
+  position: relative;
 }
 
 #sendgridLogo {
   top: 16px;
   position: relative;
+}
+
+.poweredByYandex {
+ font-size:14px;
 }
