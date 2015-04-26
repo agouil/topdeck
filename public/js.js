@@ -222,6 +222,10 @@ var global_timer = false;
 $(document).ready(function () {
   showMapForStep($('.stop-map-canvas'));
 
+  if ($('.dropdown-toggle').length > 0) {
+    $('.dropdown-toggle').dropdown();
+  }
+
   if ($('#callRequest').length > 0) {
     $('#callRequest').click(function () {
       $.ajax({

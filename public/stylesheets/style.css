@@ -35,7 +35,7 @@ a {
     width: 80%;
     position: absolute;
     height: 35px;
-    background: none repeat scroll 0 0 #1abc9c;
+    background: none repeat scroll 0 0 #00B2EE;
     border-radius: 0 0 10px 0;
 }
 
@@ -47,12 +47,12 @@ a {
 
 .tileTextFooterBg {
     opacity: 0.80;
-    width: 60%;
+    width: 52%;
     position: absolute;
     height: 55px;
-    background: none repeat scroll 0 0 #1abc9c;
+    background: none repeat scroll 0 0 #00B2EE;
     top: 145px;
-    left: 40%;
+    left: 48%;
     border-radius: 10px 0 0 0;
 }
 
