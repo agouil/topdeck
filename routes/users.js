@@ -36,7 +36,6 @@ router.get('/', function (req, res, next) {
       function (err, rows, fields) {
         if (err) throw err;
         connection.destroy();
-        console.log(rows)
         res.render('users', {users: rows});
       });
 });

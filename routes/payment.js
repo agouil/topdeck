@@ -56,24 +56,26 @@ function makePayment(gateway, nonce, tour, response) {
                           pot = (1 - cut) * tour.cost;
 
                       var userWeight = [];
+                      var userVotes = [];
                       var totalVotes = 0;
                       var insertObj = [];
                       for (var i = 0; i < result.length; i++) {
                         var row = result[i];
-                        totalVotes += parseInt(row.votes);
+                        totalVotes += parseInt(row.upVotes);
+                        userVotes[row.userId] = parseInt(row.upVotes);
                       }
                       for (var j = 0; j < result.length; j++) {
                         var row = result[j];
-
-                        userWeight[row.userId] = parseInt(row.votes) / parseInt(totalVotes);
-                        insertObj.push({
-                          fk_user_id: row.userId,
-                          amount: pot * userWeight[row.userId]
-                        });
+                        // check we haven't already weighted this user
+                        if (!userWeight[row.userId]) {
+                          userWeight[row.userId] = parseInt(userVotes[row.userId]) / parseInt(totalVotes);
+                          insertObj.push([
+                            row.userId, pot * userWeight[row.userId]
+                          ]);
+                        }
                       }
 
-                      connection.query('INSERT INTO tb_payment_user_transaction SET ? ;', insertObj, function (err, result) {
-                      });
+                      connection.query('INSERT INTO tb_payment_user_transaction (fk_user_id, amount) VALUES ?', [insertObj]);
 
                     });
 
