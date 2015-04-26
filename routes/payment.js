@@ -11,11 +11,12 @@ var gateway = braintree.connect({
 router.get('/tour/:id', function(req, res, next) {
   gateway.clientToken.generate({}, function (err, result) {
     if (err) throw err;
-    res.render('payment', {clientToken: result.clientToken});
+    res.render('payment', {clientToken: result.clientToken, tourId: req.params.id});
   });
 });
 
 router.post('/process', function(req, res, next) {
+  var tourId = req.body.tourId;
   var nonce = req.body.payment_method_nonce;
   gateway.transaction.sale({
     amount: '10.00',
@@ -26,7 +27,7 @@ router.post('/process', function(req, res, next) {
       gateway.transaction.submitForSettlement(authResult.transaction.id, function (err, settlementResult) {
         if (err) throw err;
         if (settlementResult.success) {
-	         res.send('SUCCESS!!', {});
+	  res.render('success', {tourId: tourId});
         } else {
           gateway.transaction.void(authResult.transaction.id, function (err, result) {});
           res.render('error', {});
