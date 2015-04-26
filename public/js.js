@@ -295,10 +295,10 @@ $(document).ready(function () {
 
     $('.vote').click(function (event) {
       var type = $(this).hasClass('vote-up') ? 'up' : 'down';
-      var stopId = $(this).parent('.vote-form').data('spot-id');
+      var spotId = $(this).parents('.vote-form').data('spot-id');
       $.post("/vote",
           {
-            stopId: stopId,
+            spotId: spotId,
             type: type
           },
           function (data) {
