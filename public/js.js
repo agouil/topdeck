@@ -196,6 +196,20 @@ function goToNextStep() {
   showDetailsForStep(nextStep);
 }
 
+function checkForPaypal() {
+  if ($('#checkout').height() > 30) {
+    $('#checkout').addClass('checkoutBorder');
+  }
+  if ($('#checkout').height() > 90) {
+    window.clearTimeout(global_timer)
+    $('#paymentLoadingGif').addClass('hidden');
+    $('#checkout .buttons').removeClass('hidden')
+  }
+}
+
+// It's a hackthon, leave me alone
+var global_timer = false;
+
 // Calling
 $(document).ready(function () {
   showMapForStep($('.stop-map-canvas'));
@@ -213,6 +227,10 @@ $(document).ready(function () {
   }
   if ($('#btn_detail_purchase').length > 0) {
     $('#btn_detail_purchase').click(function () {
+      global_timer = setInterval(function () {
+        checkForPaypal()
+      }, 500);
+
       $('#btn_detail_purchase').addClass('hidden');
       $('#paymentLoadingGif').removeClass('hidden');
 
@@ -221,7 +239,6 @@ $(document).ready(function () {
       $.ajax({
         url: url
       }).success(function (response) {
-        $('#paymentLoadingGif').addClass('hidden');
         $('#paymentContainer').html(response);
         $('#payment_cancel_button').click(function () {
           $('#paymentContainer').empty();
