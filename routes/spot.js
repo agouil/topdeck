@@ -44,20 +44,9 @@ router.post('/add', function(req, res, next) {
         success: function (form) {
             // there is a request and the form is valid
             // form.data contains the submitted data
-            console.log('success');
-            console.log(form);
             connection.query('INSERT INTO tb_spot SET ? ;SELECT LAST_INSERT_ID() as id;', form.data, function(err, result) {
                 res.redirect('/spot/view/' + result.id)
             });
-        },
-        error: function (form) {
-            // the data in the request didn't validate,
-            // calling form.toHTML() again will render the error messages
-            console.log('error');
-        },
-        empty: function (form) {
-            // there was no form data in the request
-            console.log('empty');
         }
     });
 });
