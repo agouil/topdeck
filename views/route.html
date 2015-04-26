@@ -12,7 +12,16 @@
 
   <h4>Your route today</h4>
 
-  <div class="stop-map-canvas"></div>
+  <div class="stop-map-canvas-container">
+
+    <div class="stop-map-canvas-holder text-center">
+      <i class="fa fa-spin fa-map-marker fa-4x"></i>
+    </div>
+
+    <div class="stop-map-canvas">
+
+    </div>
+  </div>
 
   <div class="clearfix"></div>
   <div class="step-container">
@@ -30,8 +39,10 @@
           </div>
         </div>
         <div class="step-name">
-          <strong class="name"><%= step.name %></strong>
-          <span class="step-distance"></span>
+          <strong class="name">
+            <%= step.name %>
+            <span class="step-distance"></span>
+          </strong>
         </div>
       </div>
       <div class="clearfix"></div>

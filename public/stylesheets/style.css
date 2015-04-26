@@ -219,15 +219,18 @@ a {
     overflow: hidden;
 }
 
+.users .step-icon,
 .navbar-header .step-icon {
     width:40px;
     height: 40px;
 }
 
+.users .user-logged-in,
 .navbar-header .user-logged-in {
     margin: 5px 25px 0 0;
 }
 
+.users .img-circle-border,
 .navbar-header .img-circle-border {
     width: 42px;
     height: 42px;
@@ -251,6 +254,16 @@ a {
 .step-name {
     overflow: hidden;
     padding: 0 10px;
+    height: 57px;
+    vertical-align: middle;
+    /* display: inline-block; */
+    line-height: 54px;
+}
+
+.step-name .name {
+    vertical-align: middle;
+    display: inline-block;
+    line-height: normal;
 }
 
 .step .img-circle,
@@ -280,6 +293,7 @@ a {
 .step-distance {
     color: #dadada;
     font-size: 16px;
+    font-weight: normal;
 }
 
 .detailContainer .spotRow {
@@ -346,10 +360,33 @@ a {
     color: #ECF0F1;
 }
 
+.stop-map-canvas-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
 .stop-map-canvas {
+    position: absolute;
     height: 300px;
     width: 100%;
     margin-bottom: 20px;
+    z-index: 2;
+}
+
+.stop-map-canvas-holder {
+    position: absolute;
+    height: 300px;
+    width: 100%;
+    margin-bottom: 20px;
+    z-index: 1;
+    border: 3px solid #dadada;
+    border-radius: 5px;
+}
+
+
+.stop-map-canvas-holder i {
+    margin-top: 110px;
 }
 
 .tour-done .btn {
@@ -448,4 +485,8 @@ a {
 
 #navbar .dropdown .flag-icon {
   margin-right: 5px;
+}
+
+.users {
+    font-size: 14px;
 }

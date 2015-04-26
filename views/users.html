@@ -1,44 +1,43 @@
 <% layout('boilerplate') -%>
 
-<div class="container">
-  <div class="row">
-    <h1>Top Users</h1>
+<h3>Top Users</h3>
 
-    <table class="table">
-      <thead>
-      <tr>
-        <th colspan="2"></th>
-        <th class="text-center">Posts</th>
-        <th class="text-center">Votes</th>
-        <th class="text-center">Owed</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% users.forEach(function(user) { %>
-      <tr>
-        <td>
-          <div class="img-circle-border">
-            <div class="img-circle overflow">
-              <div class="step-icon background-cover "
-                   style="background-image: url('<%= user.profileImage %>')"></div>
-            </div>
+<div class="row users">
+  <table class="table">
+    <thead>
+    <tr>
+      <th colspan="2"></th>
+      <th class="text-center">Posts</th>
+      <th class="text-center">Votes</th>
+      <th class="text-center">Owed</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% users.forEach(function(user) { %>
+    <tr>
+      <td>
+        <div class="img-circle-border">
+          <div class="img-circle overflow">
+            <div class="step-icon background-cover "
+                 style="background-image: url('<%= user.profileImage %>')"></div>
           </div>
-        </td>
-        <td valign="middle">
-          <%= user.username %>
-        </td>
-        <td valign="middle" class="text-center">
-          <%= parseInt(user.spots ? user.spots : 0) %>
-        </td>
-        <td valign="middle" class="text-center">
-          <%= parseInt(user.votes ? user.votes : 0) %>
-        </td>
-        <td valign="middle" class="text-center">
-          &pound;<%= parseFloat(user.owed ? user.owed : 0).toFixed(2) %>
-        </td>
-      </tr>
-      <% }); %>
-      </tbody>
-    </table>
-  </div>
+        </div>
+      </td>
+      <td valign="middle">
+        <%= user.username %>
+      </td>
+      <td valign="middle" class="text-center">
+        <%= parseInt(user.spots ? user.spots : 0) %>
+      </td>
+      <td valign="middle" class="text-center">
+        <%= parseInt(user.votes ? user.votes : 0) %>
+      </td>
+      <td valign="middle" class="text-center">
+        &pound;<%= parseFloat(user.owed ? user.owed : 0).toFixed(2) %>
+      </td>
+    </tr>
+    <% }); %>
+    </tbody>
+  </table>
 </div>
+
