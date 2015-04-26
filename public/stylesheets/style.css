@@ -1,14 +1,14 @@
 body {
-  padding-top: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding-top: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 .clear {
-  clear:both;
+    clear: both;
 }
 
 .tileHolder {
@@ -17,7 +17,7 @@ a {
     width: 100%;
     display: inline-block;
     margin-bottom: 5px;
-    background-size: cover!important;
+    background-size: cover !important;
 }
 
 .tileHolder a {
@@ -40,9 +40,9 @@ a {
 }
 
 .tileTextCenter {
-  top: 0;
-  width: 80%;
-  position: absolute;
+    top: 0;
+    width: 80%;
+    position: absolute;
 }
 
 .tileTextFooterBg {
@@ -57,153 +57,169 @@ a {
 }
 
 .tileHolder .tileText {
-  position: absolute;
-  text-align: center;
-  width: 100%;
-  color: #ffffff;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
 }
 
 .tileHolder .tileFooterText {
-  position: absolute;
-  text-align: center;
-  width: 100%;
-  color: #ffffff;
+    position: absolute;
+    text-align: center;
+    color: #ffffff;
+    width: 52%;
+    float: right;
+    right: 0;
+}
+
+@media(min-width: 992px) {
+    .tileTextFooterBg,
+    .tileHolder .tileFooterText {
+        width: 100%;
+        left: 0px;
+    }
+
+}
+@media(max-width: 768px) {
+    .tileTextFooterBg,
+    .tileHolder .tileFooterText {
+        width: 100%;
+        left: 0px;
+    }
 }
 
 .tileHolder .tileFooterText .left {
-  height: 100%;
-  float: left;
-  width: 60%
+    height: 100%;
+    float: left;
+    width: 60%
 }
 
 .tileHolder .tileFooterText .middle {
-  float: right;
-  width: 20%;
+    float: right;
+    width: 20%;
 }
 
 .tileHolder .tileFooterText .right {
-  float:right;
-  padding-left: 4%;
-  padding-right: 7%;
+    float: right;
+    padding-left: 4%;
+    padding-right: 7%;
 }
 
 .tileHolder .tileText {
-  font-size: 20px;
-  height: 50px;
-  top: 1px;
+    font-size: 20px;
+    height: 50px;
+    top: 1px;
 }
 
 .tileHolder .tileFooterText {
-  font-size: 16px;
-  top: 145px;
+    font-size: 16px;
+    top: 145px;
 }
 
 .tileHolder .tileFooterBusStop {
-  position: absolute;
-  text-align: center;
-  width: 20%;
-  color: #ffffff;
-  width: 20%;
+    position: absolute;
+    text-align: center;
+    width: 20%;
+    color: #ffffff;
+    width: 20%;
 }
 
 .detailContainer .bus_icon,
 .tileHolder .bus_icon {
-  width: 21px;
-  height: 21px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  background-color: red;
-  margin-left: 20px;
+    width: 21px;
+    height: 21px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: red;
+    margin-left: 20px;
 }
 
 .detailContainer .bus_icon .bus_stop {
-  top: 0px;
-  right: -5px;
-  font-size: 15px;
+    top: 0px;
+    right: -5px;
+    font-size: 15px;
 }
 
 .tileHolder .bus_icon .bus_stop {
-  top: -2px;
-  right: 1px;
+    top: -2px;
+    right: 1px;
 }
 
 .detailContainer .bus_icon .bus_stop,
 .tileHolder .bus_icon .bus_stop {
-  position: relative;
-  color: white;
+    position: relative;
+    color: white;
 }
 
-
 .detailContainer .spot {
-  margin-top: 10px;
-  margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .detailContainer .spot .spotCircle {
-  width: 50px;
-  height: 50px;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  border-radius: 25px;
-  border: solid #CCCCCC 1px;
-  float:left;
-  top: 15px;
-  position: relative;
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    border: solid #CCCCCC 1px;
+    float: left;
+    top: 15px;
+    position: relative;
 }
 
 .detailContainer .spotText {
-  font-weight: bold;
-  top: 20px;
-  position: relative;
-  padding-left: 10px;
-
+    font-weight: bold;
+    top: 20px;
+    position: relative;
+    padding-left: 10px;
 
 }
 
 .detailContainer .spot .spotName {
-  float: left;
-  position: relative;
-  top: 14px;
-  margin-left: 10px;
+    float: left;
+    position: relative;
+    top: 14px;
+    margin-left: 10px;
 }
 
 .detailContainer .spot .spotName .name {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .detailContainer .spot .spotName .desc {
-  line-height: 20px;
+    line-height: 20px;
 }
 
 .detailContainer .routeInfo .routeImg {
-  width:100%;
+    width: 100%;
 }
 
 .detailContainer .routeInfo {
-  margin-top: 15px;
-  margin-bottom: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .detailContainer .routeInfoLeft .routeInfoTitle {
-  font-size: 26px;
+    font-size: 26px;
 }
 
 .detailContainer .routeInfoLeft .routeInfoDescription {
-  line-height: 20px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #CCCCCC;
+    line-height: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #CCCCCC;
 }
 
 .detailContainer .routeInfoLeft table {
-  margin-bottom:5px;
+    margin-bottom: 5px;
 }
 
 .detailContainer .routeInfoLeft .routeInfoBoxed {
 }
 
 .detailContainer .spotsInfo .spot {
-  margin: 10px 10px 10px 0;
+    margin: 10px 10px 10px 0;
 }
 
 .step {
@@ -221,7 +237,7 @@ a {
 
 .users .step-icon,
 .navbar-header .step-icon {
-    width:40px;
+    width: 40px;
     height: 40px;
 }
 
@@ -247,8 +263,8 @@ a {
 }
 
 .step-image {
-    width:55px;
-    float:left;
+    width: 55px;
+    float: left;
 }
 
 .step-name {
@@ -287,7 +303,7 @@ a {
 }
 
 .spotsInfo .spotTitle {
-  font-size: 26px;
+    font-size: 26px;
 }
 
 .step-distance {
@@ -301,31 +317,30 @@ a {
 }
 
 .detailContainer .purchaseButton {
-  text-align:center;
-  margin-bottom:5px;
+    text-align: center;
+    margin-bottom: 5px;
 }
 
 .detailContainer .purchaseButton .btn.btn-success {
-  margin:auto;
+    margin: auto;
 }
 
-
 #callRequest {
-  margin-top:15px;
+    margin-top: 15px;
 }
 
 .hide,
 .hidden {
-  display:none;
+    display: none;
 }
 
 #checkout.checkoutBorder {
-  border: solid 1px #CCCCCC;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  margin-bottom: 10px;
-  padding: 10px;
+    border: solid 1px #CCCCCC;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    padding: 10px;
 }
 
 .tour .hero {
@@ -346,10 +361,10 @@ a {
     left: 0;
     bottom: 0;
     right: 0;
-    background: -webkit-linear-gradient(180deg, rgba(0,0,0,0) , rgba(0,0,0,1)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(180deg, rgba(0,0,0,0) , rgba(0,0,0,1)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(180deg, rgba(0,0,0,0) , rgba(0,0,0,1)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(180deg, rgba(0,0,0,0) , rgba(0,0,0,1)); /* Standard syntax */
+    background: -webkit-linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)); /* Standard syntax */
 }
 
 .tour .hero h1 {
@@ -384,7 +399,6 @@ a {
     border-radius: 5px;
 }
 
-
 .stop-map-canvas-holder i {
     margin-top: 110px;
 }
@@ -402,34 +416,33 @@ a {
 }
 
 #logos .logoContainer {
-  width:40%;
-  height:50px;
-  display:block;
-  float:left;
-  margin:5px 0 10px 0;
+    width: 40%;
+    height: 50px;
+    display: block;
+    float: left;
+    margin: 5px 0 10px 0;
 }
 
 #logos .logoFirst {
-  margin-right:7%;
+    margin-right: 7%;
 }
 
 #peopleContainer img {
-  width: 23%;
-  margin-right:1%;
+    width: 23%;
+    margin-right: 1%;
 }
 
 #logos .logoContainer img {
-  width:100%;
+    width: 100%;
 }
 
 #peopleContainer {
-  margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
 .voting {
     margin: 15px 0 10px;
 }
-
 
 .vote-form .btn-group {
     width: 100%;
@@ -439,14 +452,15 @@ a {
     height: 59px;
     width: 100%;
 }
+
 .next-stop-container {
     position: fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    height:60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
     padding: 7px 15px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.8) , rgba(255,255,255,0.8));
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8));
     border-top: 1px solid #34495E;
     z-index: 100000;
 }
@@ -465,27 +479,27 @@ a {
 }
 
 .successContainer .fui-check {
-  padding-right: 5px;
+    padding-right: 5px;
 }
 
 .successContainer {
-  padding-top: 15px;
+    padding-top: 15px;
 }
 
 .successContainer .title {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 .successContainer .btnContainer {
-  text-align: center;
+    text-align: center;
 }
 
 .successContainer .btnContainer button {
-  margin:auto;
+    margin: auto;
 }
 
 #navbar .dropdown .flag-icon {
-  margin-right: 5px;
+    margin-right: 5px;
 }
 
 .users {
@@ -493,21 +507,21 @@ a {
 }
 
 #yandexLogo {
-  top: -10px;
-  position: relative;
+    top: -10px;
+    position: relative;
 }
 
 #sendgridLogo {
-  top: 16px;
-  position: relative;
+    top: 16px;
+    position: relative;
 }
 
 .poweredByYandex {
- font-size:14px;
+    font-size: 14px;
 }
 
 .landmark-form {
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 .landmark-form .input-lg {
@@ -540,7 +554,7 @@ a {
 }
 
 #tflLogo {
-  margin-top: 3px;
+    margin-top: 3px;
 }
 
 .display-inline {
@@ -550,45 +564,58 @@ a {
 body .navbar-inverse {
     background-color: #E74C3C;
 }
-.navbar-inverse .navbar-nav>li>a:hover,
-.navbar-inverse .navbar-nav>li>a:focus
 
-body .navbar-inverse .navbar-nav>.open>a,
-body .navbar-inverse .navbar-nav>.open>a:hover,
-body .navbar-inverse .navbar-nav>.open>a:focus,
-body .navbar-inverse .navbar-nav>.open>a,
-body .navbar-inverse .navbar-nav>.open>a:hover,
-body .navbar-inverse .navbar-nav>.open>a:focus,
-body .navbar-inverse .navbar-nav>.active>a,
-body .navbar-inverse .navbar-nav>.active>a:hover,
-body .navbar-inverse .navbar-nav>.active>a:focus {
-    background-color:#A01607;
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus
+body .navbar-inverse .navbar-nav > .open > a,
+body .navbar-inverse .navbar-nav > .open > a:hover,
+body .navbar-inverse .navbar-nav > .open > a:focus,
+body .navbar-inverse .navbar-nav > .open > a,
+body .navbar-inverse .navbar-nav > .open > a:hover,
+body .navbar-inverse .navbar-nav > .open > a:focus,
+body .navbar-inverse .navbar-nav > .active > a,
+body .navbar-inverse .navbar-nav > .active > a:hover,
+body .navbar-inverse .navbar-nav > .active > a:focus {
+    background-color: #A01607;
 }
 
-body .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover,
-body .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus {
+body .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+body .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
     color: #FF998E;
 }
+
 body .navbar-toggle:hover:before,
 body .navbar-toggle:focus:before,
-body .navbar-inverse .navbar-nav>li>a:hover,
-body .navbar-inverse .navbar-nav>li>a:focus,
+body .navbar-inverse .navbar-nav > li > a:hover,
+body .navbar-inverse .navbar-nav > li > a:focus,
 body .navbar-inverse .navbar-toggle:hover:before,
 body .navbar-inverse .navbar-toggle:focus:before,
 body .navbar-toggle:hover:before,
 body .navbar-toggle:focus:before,
 body .navbar-inverse .navbar-brand:hover,
 body .navbar-inverse .navbar-brand:focus {
-    color:#A01607;
+    color: #A01607;
 }
-body .navbar-inverse .navbar-nav>.dropdown>a:hover .caret,
-body .navbar-inverse .navbar-nav>.dropdown>a:focus .caret {
+
+body .navbar-inverse .navbar-nav > .dropdown > a:hover .caret,
+body .navbar-inverse .navbar-nav > .dropdown > a:focus .caret {
     border-top-color: #A01607;
     border-bottom-color: #A01607;
 }
+
 #logos.container .row .col-xs-6 img {
     height: 35px;
 }
-#logos.container .row .col-xs-6  {
-margin-bottom:10px;
+
+#logos.container .row .col-xs-6 {
+    margin-bottom: 10px;
+}
+
+.homepage .price {
+    padding: 8px 15px;
+    font-size: 26px;
+}
+.detailContainer .arrives-in {
+    color:#aaa;
+    font-size:16px;
 }

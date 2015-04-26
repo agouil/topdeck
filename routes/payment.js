@@ -27,6 +27,7 @@ function makePayment(gateway, nonce, tour, response) {
         if (err) throw err;
         if (authResult.success && authResult.transaction.status == 'authorized') {
           gateway.transaction.submitForSettlement(authResult.transaction.id, function (err, settlementResult) {
+                console.log(err)
                 if (err) throw err;
                 if (settlementResult.success) {
                   // log transaction

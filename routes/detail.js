@@ -24,9 +24,11 @@ router.get('/tour/:id', function(req, res, next) {
     var tours = false;
     var tourId = req.params.id;
 
+    try {
     function getSpotsQuery(){
+      try {
       var deferred = q.defer();
-      var sql = 'select * ' +
+      var sql = 'select *' +
             'from tb_spot s '  +
             'join tb_tour_item ti ' +
             'on s.pk_spot_id = ti.fk_spot_id ' +
@@ -34,17 +36,25 @@ router.get('/tour/:id', function(req, res, next) {
             'and ti.fk_bus_sequence_id = 0';
       connection.query(sql, deferred.makeNodeResolver());
       return deferred.promise;
+      } catch (err) {console.log(err)}
     }
 
     function getTourQuery(){
         var deferred = q.defer();
-        var sql = 'select * from tb_tour where pk_tour_id = ' + tourId;
+      try {
+        var sql =
+            'SELECT t.*, fk_line_id as busLineId, bs.name as stopName '
+            + 'from tb_tour t '
+            + 'left join tb_bus_stop bs on t.fk_bus_stop_start_id = bs.bus_stop_code '
+            + 'where pk_tour_id = ' + tourId;
         connection.query(sql, deferred.makeNodeResolver());
         return deferred.promise;
+      } catch (err) {console.log(err)}
     }
 
 
         q.all([getSpotsQuery(),getTourQuery()]).then(function(results) {
+          try {
           var tour = results[1][0][0];
           var spots = results[0][0];
 
@@ -52,7 +62,9 @@ router.get('/tour/:id', function(req, res, next) {
                spots: spots,
                 tour: tour
             });
+          } catch (err) {console.log(err)}
           });
+    } catch (err) {console.log(err)}
 
   });
 

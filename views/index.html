@@ -1,6 +1,6 @@
 <% layout('boilerplate') -%>
 
-<div class="row">
+<div class="row homepage">
   <div class="col-xs-12">
     <h3 style="font-size: 49px;">Explore London</h3>
   </div>
@@ -19,19 +19,15 @@
         </div>
         <div class="tileTextFooterBg"></div>
         <div class="tileFooterText">
-          <div class="right">
-            Starts at
-            <div class="bus_icon">
-              <div class="bus_stop">
-                <%= tour.stop_letter %>
-              </div>
-            </div>
-          </div>
-          <div class="middle">
-            Cost
+          <div class="pull-left price">
             <div>
               £<%= tour.cost.toFixed(2) %>
             </div>
+          </div>
+          <div class="overflow">
+            Starts at <%= tour.stopName.toLowerCase().replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function ($1) {return $1.toUpperCase();}).replace('<> #','') %>
+            <br/>
+            <span class="arrives-in step-type-stop" data-lineid="<%= tour.busLineId %>" data-bus-stop-name="<%= tour.stopName %>"></span>
           </div>
         </div>
       </div>

@@ -65,28 +65,28 @@ function populateLocationData() {
             );
 
         $(step).find('.step-distance').html(distance);
-	if ($(step).hasClass('step-type-stop')) {
-	  var countdown = $(step).find('span.step-countdown');
-	  if ($(countdown).html() == '') {
-	  	  var lineId = $(countdown).data('lineid');
-		  var busStopName = $(countdown).data('bus-stop-name').replace(/_/g," ");
-		  $.ajax({
-	            url: '/tour/tfl/countdown/' + lineId + '/' + busStopName,
-       		    cache: false,
-       	     	    timeout: 5000,
-       	    	    success: function (data) {
-		      var data = $.map(data, function(value, key) {
-           	       return [value];
-            	      });
-		      var minsText = 'mins';
-		      if (data[0] == 1) {
-			      minsText = 'min';
-		      }
-		      $(countdown).html('departs in ' + data[0] + minsText);
-                    }
-          	});
-	  }
-	}
+        if ($(step).hasClass('step-type-stop')) {
+          var countdown = $(step).find('span.step-countdown');
+          if ($(countdown).text() == '') {
+            var lineId = $(countdown).data('lineid');
+            var busStopName = $(countdown).data('bus-stop-name').replace(/_/g, " ");
+            $.ajax({
+              url: '/tour/tfl/countdown/' + lineId + '/' + busStopName,
+              cache: false,
+              timeout: 5000,
+              success: function (data) {
+                var data = $.map(data, function (value, key) {
+                  return [value];
+                });
+                var minsText = 'mins';
+                if (data[0] == 1) {
+                  minsText = 'min';
+                }
+                $(countdown).html('departs in ' + data[0] + minsText);
+              }
+            });
+          }
+        }
       });
 
 
@@ -103,6 +103,7 @@ function populateLocationData() {
       navigator.geolocation.getCurrentPosition(showPosition);
     }
   });
+
 }
 
 var mapLocMarker = null;
@@ -236,6 +237,34 @@ function checkForPaypal() {
   }
 }
 
+function updateBusTime() {
+  console.log(1)
+  var countDown = $('.arrives-in');
+  if (countDown.length > 0 && countDown.text() == '') {
+    console.log(2)
+    console.log($(countDown));
+    countDown.each(function(i, tour) {
+      var lineId = $(tour).data('lineid');
+      var busStopName = $(tour).data('bus-stop-name').replace(/_/g, " ");
+      $.ajax({
+        url: '/tour/tfl/countdown/' + lineId + '/' + busStopName,
+        cache: false,
+        timeout: 5000,
+        success: function (data) {
+          var data = $.map(data, function (value, key) {
+            return [value];
+          });
+          var minsText = ' mins';
+          if (data[0] == 1) {
+            minsText = ' min';
+          }
+          $(tour).html('departs in ' + data[0] + minsText);
+        }
+      });
+    });
+  }
+}
+
 // It's a hackthon, leave me alone
 var global_timer = false;
 
@@ -247,12 +276,12 @@ $(document).ready(function () {
     $('.dropdown-toggle').dropdown();
   }
 
-  $('.callRequest').each(function(index, ele) {
+  $('.callRequest').each(function (index, ele) {
     $(ele).click(function () {
       $(this).children('.fa-phone').addClass('fa-spin');
       var language = $(".step-details-text").first();
       $.ajax({
-        url: '/tourtext/' 
+        url: '/tourtext/'
         + $(ele).data('spot-id')
         + '/'
         + language.data('locale'),
@@ -289,7 +318,7 @@ $(document).ready(function () {
   }
 
 
-  $('#curr-location').click(function() {
+  $('#curr-location').click(function () {
 
     function updateInputs(position) {
       console.log('ergegergerg')
@@ -302,9 +331,11 @@ $(document).ready(function () {
     }
   });
 
-  $('.landmark-form .upload-box').click(function() {
+  $('.landmark-form .upload-box').click(function () {
     $("#id_img").click();
   });
+
+  updateBusTime();
 
   if ($('.tour').length > 0) {
     $('.step').first().find('.step-details').collapse('show');
@@ -312,6 +343,7 @@ $(document).ready(function () {
     populateLocationData();
 
     setInterval(populateLocationData, 5000);
+
 
     $('.stop-map-canvas').on('click', '.btn', function (event) {
       var button = $(event.target);
@@ -359,33 +391,33 @@ $(document).ready(function () {
       $(this).html('<i class="fa fa-check"></i> Thank you for Voting')
     });
 
-    $('a.flag').click(function(e) {
+    $('a.flag').click(function (e) {
       e.preventDefault();
       var lang = $(this).children('.flag-icon').attr('data-lang');
       $('.navbar-collapse').removeClass('in');
 
 
-      $('.step-details-text').each(function() {
+      $('.step-details-text').each(function () {
         var _self = this;
         $.ajax({
           url: 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20150426T023609Z.c75f708b87a721ba.694b87f3beb45ac835a7b9d0a510191c30e20f91&lang='
-              + $(this).attr('data-current') + '-'
-              + lang + '&text=' + $(this).html(),
+          + $(this).attr('data-current') + '-'
+          + lang + '&text=' + $(this).html(),
           cache: false,
           timeout: 5000,
           success: function (data) {
-            var data = $.map(data, function(value, key) {
+            var data = $.map(data, function (value, key) {
               return [value];
             });
             $(_self).attr('data-current', lang)
             var langLocaleMap = {
-                'en'    : 'en-GB',
-                'fr'    : 'fr-FR',
-                'es'    : 'es-ES',
-                'de'    : 'de-DE',
-                'it'    : 'it-IT',
-                'ja'    : 'ja-JP',
-                'ko'    : 'ko-KR'
+              'en': 'en-GB',
+              'fr': 'fr-FR',
+              'es': 'es-ES',
+              'de': 'de-DE',
+              'it': 'it-IT',
+              'ja': 'ja-JP',
+              'ko': 'ko-KR'
             };
             $(_self).attr('data-locale', langLocaleMap[lang]);
             $(_self).html(data[2][0])

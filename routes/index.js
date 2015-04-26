@@ -20,7 +20,10 @@ router.get('/', function(req, res, next) {
     console.log('connected as id ' + connection.threadId);
   });
   var tours = false;
-  connection.query('SELECT * from tb_tour limit 5', function(err, rows, fields) {
+  connection.query(
+      'SELECT t.*, fk_line_id as busLineId, bs.name as stopName from tb_tour t '
+      + 'left join tb_bus_stop bs on t.fk_bus_stop_start_id = bs.bus_stop_code'
+      , function(err, rows, fields) {
     if (err) throw err;
     connection.destroy();
     res.render('index', {tours: rows});

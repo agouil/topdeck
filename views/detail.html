@@ -17,18 +17,17 @@
         <table class="table">
           <tr>
             <td> Cost </td>
-            <td> £<%= (tour.cost).toFixed(2) %> </td>
+            <td class="text-right"> £<%= (tour.cost).toFixed(2) %> </td>
           </tr>
           <tr>
             <td> Starts at stop </td>
-            <td>
-              <div class="bus_icon">
-                <div class="bus_stop">
-                  <%= tour.stop_letter %>
-                </div>
-              </div>
+            <td class="text-right">
+              <%= tour.stopName.toLowerCase().replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function ($1) {return $1.toUpperCase();}) %>
+              <br/>
+              <span class="arrives-in step-type-stop" data-lineid="<%= tour.busLineId %>" data-bus-stop-name="<%= tour.stopName %>"></span>
             </td>
           </tr>
+
         </table>
         <div class="purchaseButton">
           <input id="btn_detail_purchase" type="button" class="btn btn-success" value="Purchase Route" data-id="<%= tour.pk_tour_id %>">
