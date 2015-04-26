@@ -158,19 +158,24 @@ function calcDistance(lat1, lon1, lat2, lon2) {
 
 function goToNextStep() {
   var currentStep = $('.step.current-step').removeClass('current-step');
-  // hide the details
-  currentStep.find('.step-details').addClass('collapse');
-  console.log(currentStep.find('.step-bar'));
+  var stepDetails = currentStep.find('.step-details');
   var nextStep = $(currentStep.next()[0]);
+
+  // start moving to the next step before doing anything to keep things aligned
+  var container = $('html,body'),
+      navbarHeight = 63,
+      prevStepHeight = stepDetails.outerHeight();
+  container.animate({
+    scrollTop: nextStep.offset().top - container.offset().top + container.scrollTop() - navbarHeight - prevStepHeight
+  });
+
+  // hide the details
+  stepDetails.collapse('hide');
   nextStep.addClass('current-step');
   // show the details of the next step
   nextStep.find('.step-details').collapse('show');
   // scroll down to the next step
-  var container = $('html,body'),
-      navbarHeight = 53;
-  container.animate({
-    scrollTop: nextStep.offset().top - container.offset().top + container.scrollTop() - navbarHeight
-  });
+
 }
 
 // Calling
@@ -228,6 +233,8 @@ $(document).ready(function () {
   });
 
   if ($('.tour').length > 0) {
+    $('.step').first().find('.step-details').collapse('show');
+
     populateLocationData();
 
     setInterval(populateLocationData, 5000);

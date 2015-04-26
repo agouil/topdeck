@@ -3,94 +3,95 @@
 
 <div class="tour">
 
-    <div class="hero background-cover" style="background-image: url('<%= tour.img %>')">
-        <div class="gradient"></div>
+  <div class="hero background-cover" style="background-image: url('<%= tour.img %>')">
+    <div class="gradient"></div>
 
-        <h1><%= tour.name %></h1>
-    </div>
+    <h1><%= tour.name %></h1>
+  </div>
 
-    <div class="clearfix"></div>
-    <div class="step-container">
+  <div class="clearfix"></div>
+  <div class="step-container">
     <% var i = 0; %>
     <% tourSteps.forEach(function(step){ %>
-        <div id="step-<%= step.rank %>" class="step step-type-<%= step.type %> <%= i == 0 ? 'current-step' : '' %>"
-             data-lat="<%= step.lat %>" data-lng="<%= step.lng %>" data-step="<%= step.rank %>">
-            <div class="step-bar" data-toggle="collapse" href="#step-details-<%= step.id %>"
-                 aria-expanded="false" aria-controls="collapseExample">
-                <div class="step-image">
-                    <div class="img-circle-border">
-                        <div class="img-circle ">
-                            <div class="step-icon background-cover" style="background-image: url('<%= step.image %>')"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="step-name">
-                    <%= step.name %>
-                    <span class="step-distance"></span>
-                </div>
+    <div id="step-<%= step.rank %>" class="step step-type-<%= step.type %> <%= i == 0 ? 'current-step' : '' %>"
+         data-lat="<%= step.lat %>" data-lng="<%= step.lng %>" data-step="<%= step.rank %>">
+      <div class="step-bar" data-toggle="collapse" href="#step-details-<%= step.id %>"
+           aria-expanded="false" aria-controls="collapseExample">
+        <div class="step-image">
+          <div class="img-circle-border">
+            <div class="img-circle ">
+              <div class="step-icon background-cover" style="background-image: url('<%= step.image %>')"></div>
             </div>
-            <div class="clearfix"></div>
-            <div id="step-details-<%= step.id %>" class="step-details <%= i != 0 ? 'collapse' : '' %>">
-                <% if (step.type == 'spot') { %>
-                    <div class="pull-right">
-                        <button id="callRequest" type="button" data-route-id="1"
-                                class="btn btn-default navbar-btn pull-right">
-                            Call me with tour
-                        </button>
-                    </div>
-
-                    <%= step.details %>
-                <% } else { %>
-                    <div class="stop-map-canvas" data-name="<%= step.name %>"
-                         data-lat="<%= step.lat %>" data-lng="<%= step.lng %>"></div>
-                <% } %>
-
-                <% if (step.type == 'spot') { %>
-                    <div class="clearfix"></div>
-                    <div class="voting col-xs-12">
-                        <form class="form-inline">
-                            <input type="hidden" name="spot-id" value="<%= step.ref %>" />
-                            <input type="hidden" name="step-id" value="<%= step.id %>" />
-                            <div class="form-group">
-                                <div class="btn-group col-xs-12" role="group">
-                                    <button type="button" class="col-xs-6 btn btn-success">
-                                        <i class="fa fa-thumbs-up"></i>
-                                        Content
-                                    </button>
-                                    <button type="button" class="col-xs-6 btn btn-danger">
-                                        <i class="fa fa-thumbs-down"></i>
-                                        Content
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="clearfix"></div>
-                <% } %>
-            </div>
+          </div>
         </div>
-        <% i++ %>
-    <% }); %>
+        <div class="step-name">
+          <%= step.name %>
+          <span class="step-distance"></span>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div id="step-details-<%= step.id %>" class="step-details collapse">
+        <% if (step.type == 'spot') { %>
+        <div class="pull-right">
+          <button id="callRequest" type="button" data-route-id="1"
+                  class="btn btn-default navbar-btn pull-right">
+            Call me with tour
+          </button>
+        </div>
+
+        <%= step.details %>
+        <% } else { %>
+        <div class="stop-map-canvas" data-name="<%= step.name %>"
+             data-lat="<%= step.lat %>" data-lng="<%= step.lng %>"></div>
+        <% } %>
+
+        <% if (step.type == 'spot') { %>
+        <div class="clearfix"></div>
+        <div class="voting col-xs-12">
+          <form class="form-inline">
+            <input type="hidden" name="spot-id" value="<%= step.ref %>"/>
+            <input type="hidden" name="step-id" value="<%= step.id %>"/>
+
+            <div class="form-group">
+              <div class="btn-group col-xs-12" role="group">
+                <button type="button" class="col-xs-6 btn btn-success">
+                  <i class="fa fa-thumbs-up"></i>
+                  Content
+                </button>
+                <button type="button" class="col-xs-6 btn btn-danger">
+                  <i class="fa fa-thumbs-down"></i>
+                  Content
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="clearfix"></div>
+        <% } %>
+      </div>
     </div>
+    <% i++ %>
+    <% }); %>
+  </div>
 </div>
 
 <div class="next-stop-push"></div>
 <div class="next-stop-container">
-    <div class="start-tour">
-        <div class="align-text">
-            On the bus?
-        </div>
-        <button class="btn btn-primary pull-right">
-            Start the tour &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
-        </button>
+  <div class="start-tour">
+    <div class="align-text">
+      On the bus?
     </div>
-    <div class="next-stop" style="display: none;">
-        <div class="align-text">
-            Your next stop in
-            <span class="step-distance"></span>
-        </div>
-        <button class="btn btn-primary pull-right">
-            Start next guide &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
-        </button>
+    <button class="btn btn-primary pull-right">
+      Start the tour &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+    </button>
+  </div>
+  <div class="next-stop" style="display: none;">
+    <div class="align-text">
+      Your next stop in
+      <span class="step-distance"></span>
     </div>
+    <button class="btn btn-primary pull-right">
+      Start next guide &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+    </button>
+  </div>
 </div>
