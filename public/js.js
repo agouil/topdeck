@@ -228,7 +228,8 @@ $(document).ready(function () {
 
   $('.callRequest').each(function(index, ele) {
     $(ele).click(function () {
-        var language = $(".step-details-text").first();
+      $(this).children('.fa-phone').addClass('fa-spin');
+      var language = $(".step-details-text").first();
       $.ajax({
         url: '/tourtext/' 
         + $(ele).data('spot-id')
@@ -241,6 +242,7 @@ $(document).ready(function () {
       });
     });
   });
+
   if ($('#btn_detail_purchase').length > 0) {
     $('#btn_detail_purchase').click(function () {
       global_timer = setInterval(function () {
