@@ -219,6 +219,20 @@ a {
     overflow: hidden;
 }
 
+.navbar-header .step-icon {
+    width:40px;
+    height: 40px;
+}
+
+.navbar-header .user-logged-in {
+    margin: 5px 25px 0 0;
+}
+
+.navbar-header .img-circle-border {
+    width: 42px;
+    height: 42px;
+}
+
 .step-icon {
     width: 55px;
     height: 55px;

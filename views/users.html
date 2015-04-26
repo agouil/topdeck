@@ -4,30 +4,41 @@
   <div class="row">
     <h1>Top Users</h1>
 
-    <% users.forEach(function(user) { %>
-    <div class="col-md-6">
-      <div class="row">
-
-        <div class="pull-left spot">
+    <table class="table">
+      <thead>
+      <tr>
+        <th colspan="2"></th>
+        <th class="text-center">Posts</th>
+        <th class="text-center">Votes</th>
+        <th class="text-center">Owed</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% users.forEach(function(user) { %>
+      <tr>
+        <td>
           <div class="img-circle-border">
-            <div class="img-circle">
-              <div class="step-icon background-cover" style="background-image: url('<%= user.image_profile %>')"></div>
+            <div class="img-circle overflow">
+              <div class="step-icon background-cover "
+                   style="background-image: url('<%= user.profileImage %>')"></div>
             </div>
           </div>
-        </div>
-        <div class="overflow">
-          <div class="col-xs-10">
-            <%= user.username %>
-          </div>
-          <div class="col-xs-1">
-            <%= user.spots %>
-          </div>
-          <div class="col-xs-1">
-            <%= user.votes %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% }); %>
+        </td>
+        <td valign="middle">
+          <%= user.username %>
+        </td>
+        <td valign="middle" class="text-center">
+          <%= parseInt(user.spots ? user.spots : 0) %>
+        </td>
+        <td valign="middle" class="text-center">
+          <%= parseInt(user.votes ? user.votes : 0) %>
+        </td>
+        <td valign="middle" class="text-center">
+          &pound;<%= parseFloat(user.owed ? user.owed : 0).toFixed(2) %>
+        </td>
+      </tr>
+      <% }); %>
+      </tbody>
+    </table>
   </div>
 </div>

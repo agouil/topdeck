@@ -22,6 +22,11 @@ router.post('/', function(req, res, next) {
 
   connection.query('INSERT INTO tb_spot_vote SET ?', insertObj, function(err, result) {
     connection.destroy();
+    if (err) {
+      res.send('failed');
+    } else {
+      res.send('success');
+    }
   });
 });
 
