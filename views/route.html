@@ -26,7 +26,7 @@
   <div class="clearfix"></div>
   <div class="step-container">
     <% var i = 0; %>
-    <% tourSteps.forEach(function(step){ %>
+    <% tourSteps.forEach(function(step) { %>
     <div id="step-<%= step.rank %>" class="step step-type-<%= step.type %> <%= i == 0 ? 'current-step' : '' %>"
          data-lat="<%= step.lat %>" data-lng="<%= step.lng %>" data-step="<%= step.rank %>">
       <div class="step-bar" data-toggle="collapse" href="#step-details-<%= step.id %>"
@@ -55,7 +55,7 @@
             <i class="fa fa-phone"></i>
           </button>
         </div>
-        <div class="step-details-text" id="step-details-text-<%= step.id %>" data-current='en'>
+         <div class="step-details-text" id="step-details-text-<%= step.id %>" data-current='en'>
           <%= step.details %>
 	       </div>
         <% } %>
@@ -66,7 +66,6 @@
           <div class="row">
             <form class="form-inline vote-form" data-spot-id="<%= step.ref %>">
               <input type="hidden" name="step-id" value="<%= step.id %>"/>
-
               <div class="form-group col-xs-12">
                 <div class="row">
                   <div class="btn-group" role="group">
