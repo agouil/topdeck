@@ -55,9 +55,9 @@
             <i class="fa fa-phone"></i>
           </button>
         </div>
-        <div class="step-details-text">
+        <div class="step-details-text" id="step-details-text-<%= step.id %>" data-current='en'>
           <%= step.details %>
-	</div>
+	       </div>
         <% } %>
 
         <% if (step.type == 'spot') { %>

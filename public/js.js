@@ -316,30 +316,26 @@ $(document).ready(function () {
 
     $('a.flag').click(function() {
       var lang = $(this).children('.flag-icon').attr('data-lang');
-      var textToUpdate = $('.step');
-      
-var remaining = textToUpdate.length;
+      $('.navbar-collapse').removeClass('in');
 
-      for (i = 0; i < textToUpdate.length; i++) {
-        if (textToUpdate.children('.step-details-text')) {
-          var id = textToUpdate.attr('data-step');
-  	  $.ajax({
-            url: 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20150426T023609Z.c75f708b87a721ba.694b87f3beb45ac835a7b9d0a510191c30e20f91&lang=en-' 
-	      + lang + '&text=' + $(textToUpdate[i]).html(),
-            cache: false,
-            timeout: 5000,
-            success: function (data) {
-              var data = $.map(data, function(value, key) {
-                return [value];
-	      });
-	      $('#step-' + id).children('.step-details-text').html(data[2][0]);
-  	      remaining--;
-	      console.log(remaining);
-	    }
-          });
-	} 
-      }
-      console.log(textToUpdate);
+      $('.step-details-text').each(function() {
+        var _self = this;
+        $.ajax({
+          url: 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20150426T023609Z.c75f708b87a721ba.694b87f3beb45ac835a7b9d0a510191c30e20f91&lang='
+              + $(this).attr('data-current') + '-'
+              + lang + '&text=' + $(this).html(),
+          cache: false,
+          timeout: 5000,
+          success: function (data) {
+            var data = $.map(data, function(value, key) {
+              return [value];
+            });
+            $(_self).attr('data-current', lang)
+            $(_self).html(data[2][0])
+          }
+        });
+
+      });
     });
   }
 
